@@ -23,9 +23,9 @@ const ExploreSub = {
 }
 
 const routes = [
-	{path: '/', component: Home },
-	{path: '/explore', component: Explore },
-	{path: '/explore:id', component: ExploreSub },
+	{path: 'maarjin/', component: Home },
+	{path: 'maarjin/explore', component: Explore },
+	{path: 'maarjin/explore:id', component: ExploreSub },
 ];
 
 const router = VueRouter.createRouter({
