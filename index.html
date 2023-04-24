@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+	<title>Conversion</title>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128291082-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-128291082-1');
+	</script> -->
+
+	<!-- Excluding Mobile Ads? Use this Code Snippet Instead -->
+	<!-- <script>window._epn = {campaign: 5338278464, smartPopover:false};</script>
+
+	<script src="https://epnt.ebay.com/static/epn-smart-tools.js"></script> -->
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	<!-- <style>@import './css/main.css';</style> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue@next"></script> -->
+	<!-- <script src="https://unpkg.com/vue-router@2.0.0"></script> -->
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="https://unpkg.com/vue-router@4"></script>
+<!-- "vue": "https://cdn.jsdelivr.net/vue/0.12.16/vue.min.js" -->
+<!-- "vue": "https://unpkg.com/vue@2.6.0/dist/vue.esm.browser.min.js" -->
+<!-- "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js" -->
+
+	<!-- <script type="importmap">
+	  {
+		"imports": {
+		  "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+		}
+	  }
+	</script>
+	<script type="module">
+	  import { createApp } from 'vue'
+	  import MyComponent from './App.js'
+
+	  createApp(MyComponent).mount('#app')
+	</script> -->
+	<!-- <script type="module">
+		import { createApp } from 'vue'
+		//import MyComponent from './App.js'
+		//import Header from './component/header.js'
+
+		const app = createApp({});
+
+		app.component(
+			'Header', {template:'<div style="background:red;">Stuff Here</div>'}
+		);
+
+	  app.mount('#app')
+	</script> -->
+
+	<style type="text/css">
+		.box {width:200px;height:100px;margin:0 auto;text-align:center; font-size:2em;}
+		.box.pink {background:pink;}
+		.box.red {background:red;}
+
+		.menu-horz {}
+		.menu-horz li { float:left; max-width:100px; width:100%;margin:0 5px; background:yellow;}
+		.menu-horz li a { display:block; width:100%; text-align:center; padding:1em 0; font-size:13px;}
+	</style>
+
+</head>
+
+<body class="dev hidetrace">
+	<div id="wrapper">{{ Header }}
+		<header id="header">
+			<nav class="menu-horz">
+				<ul>
+					<li><router-link to="/">Go to Home</router-link></li>
+					<li><router-link to="/explore">Go to Explore</router-link></li>
+					<!-- <li><router-link to="/explore/los-angeles-california-us">Los Angeles</router-link></li>
+					<li><router-link to="/explore/atlanta-georgia-us">Atlanta</router-link></li>
+					<li><router-link to="/explore/chicago-illinois-us">Chicago</router-link></li> -->
+				</ul>
+			</nav>
+		</header>
+		<div id="content">
+			<router-view></router-view>
+		</div>
+	</div>
+	<script type="module" src="./App.js"></script>
+</body>
+
+</html>
