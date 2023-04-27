@@ -1,0 +1,11 @@
+#allows address paths to remove .html from file name
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+#allows for javascript based routing to work (react.js)
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+AddType application/x-httpd-php .htm .html
