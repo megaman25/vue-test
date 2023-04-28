@@ -18,9 +18,9 @@
 	    <!-- use the router-link component for navigation. -->
 	    <!-- specify the link by passing the `to` prop. -->
 	    <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
-	    <router-link to="/">Go to Home</router-link>
-	    <router-link to="/about">Go to About</router-link>
-	    <router-link to="/explore">Go to Explore</router-link>
+	    <router-link to="/vue-test/">Go to Home</router-link>
+	    <router-link to="/vue-test/about">Go to About</router-link>
+	    <router-link to="/vue-test/explore">Go to Explore</router-link>
 	    <!-- <a href="/">Go to Home</a>
 	    <a href="about">Go to About</a>
 	    <a href="explore">Go To Explore</a> -->
@@ -37,7 +37,6 @@
 	<!-- <script src="./vuejs-cdn/app.js"></script> -->
 	<!-- <script>
 		console.log(Vue);
-
 		let obj = {
 			number: 100,
 			method: function(x){return x;}
@@ -85,10 +84,10 @@
 		// Each route should map to a component.
 		// We'll talk about nested routes later.
 		const routes = [
-		  { path: '/', component: Home },
-		  { path: '/about', component: About },
-		  { path: '/explore', component: Explore },
-		  { path: '/explore/:id', component: ExploreSub },
+		  { path: '/vue-test/', component: Home },
+		  { path: '/vue-test/about', component: About },
+		  { path: '/vue-test/explore', component: Explore },
+		  { path: '/vue-test/explore/:id', component: ExploreSub },
 		]
 
 		// 3. Create the router instance and pass the `routes` option
