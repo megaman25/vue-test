@@ -249,7 +249,7 @@ const Results = {
 
 					<li class="card" v-for="i in data" :key="data.id">
 						<div class="image">
-							<svg id="Lines" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.96 77.38"><defs><style>.cls-1{fill:#aaa;}</style></defs><title>navigation icon</title><path class="cls-1" d="M479.5,59.75a27,27,0,0,0-27,27c0,19.19,26.14,50.4,27,50.4s27-31.21,27-50.4A27,27,0,0,0,479.5,59.75Zm0,38.38a11.4,11.4,0,1,1,11.4-11.4A11.4,11.4,0,0,1,479.5,98.13Z" transform="translate(-452.52 -59.75)"/></svg>
+							<svg id="Lines" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 53.96 77.38"><defs><style>.cls-1{fill:#aaa;}</style></defs><title>navigation icon</title><path class="cls-1" d="M479.5,59.75a27,27,0,0,0-27,27c0,19.19,26.14,50.4,27,50.4s27-31.21,27-50.4A27,27,0,0,0,479.5,59.75Zm0,38.38a11.4,11.4,0,1,1,11.4-11.4A11.4,11.4,0,0,1,479.5,98.13Z" transform="translate(-452.52 -59.75)"/></svg>
 						</div>
 						<div class="caption">
 							<a :href=i.item.url>
