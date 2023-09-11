@@ -1,0 +1,38 @@
+// categories.json - iaua 
+// [1] prevent duplicate indexes and duplicate names, consolidate similar names
+// [2] This is admin area editing only NOT users. This data is useful for classifying sorting data for searches and bulk edits.
+[
+	{"travel wishlist":0},
+	{"travel itinerary":1},
+	{"travel route planning planner":2},
+	{"relaxation":3},
+	{"happiness/serenity":4},
+	{"stress, anxiety treatment / management":5},
+	{"natural rememdies":6},
+	{"relaxation methods":7},
+	{"relaxation tourism":8},
+	{"massage":9},
+	{"luxury lifestyle":10},
+	{"travel guide":11},
+	{"adventure / thrill seeking":12},
+	{"theme parks":13},
+	{"water parks":14},
+	{"trampoline fun park":15},
+	{"roller skating rink":16},
+	{"roller blade":17},
+	{"bungie jumping":18},
+	{"skydiving":19},
+	{"horse riding":20},
+	{"surfing / water / boogie boarding":21},
+	{"snorkling / deep sea diving":22},
+	{"swimming with dolphins":23},
+	{"rock climbing":24},
+	{"pathfinding":25},
+	{"hang gliding":26},
+	{"ballooning":27},
+	{"tourism":28}, //different types of tourism
+	{"comedy":29},
+	{"entertainment":30},
+	{"tour":31},
+	{"vacation":32},
+];
