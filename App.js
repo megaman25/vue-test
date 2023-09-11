@@ -10,8 +10,6 @@ import Hotels from '/sections/hotels.js';
 //import CityProfile from '/sections/cityProfile.js';
 //import Results from '/sections/results.js';
 import agoda from '/sections/agoda.js';
-import { name, street } from '/import-test.js';
-import solo from '/components/components.js';
 
 function addTitle (){
 	return "maarjin - " + window.location.pathname;
@@ -500,6 +498,7 @@ const app = Vue.createApp({
 		}
 	}
 })
+
 
 // INTERNAL COMPONENT
 const INSIDE = {
