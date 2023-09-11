@@ -3,115 +3,105 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Vue 3 Tutorial</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-	<!-- <script src="https://unpkg.com/vue-router@2.0.0"></script> -->
-	<script src="https://unpkg.com/vue-router@4"></script>
+	<title></title>
+	<script src="/js/vue-3.2.36.js"></script>
+	<script src="/js/vue-router-4.2.0.js"></script>
+	<script src="/js/fuse.min-3.4.5.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/main.css"/>
+
 </head>
 
-	<style>
-		p > a {display:block; margin:0 10px; float:left;}
-	</style>
-	<div id="app">
-	  <h1>Hello App!</h1>
-	  <p>
-	    <!-- use the router-link component for navigation. -->
-	    <!-- specify the link by passing the `to` prop. -->
-	    <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
-	    <router-link to="/vue-test/">Go to Home</router-link>
-	    <router-link to="/vue-test/about">Go to About</router-link>
-	    <router-link to="/vue-test/explore">Go to Explore</router-link>
-	    <!-- <a href="/">Go to Home</a>
-	    <a href="about">Go to About</a>
-	    <a href="explore">Go To Explore</a> -->
-	    <router-link to="/vue-test/explore/los-angeles-california-us">Los Angeles</router-link>
-	    <router-link to="/vue-test/explore/atlanta-georgia-us">Atlanta</router-link>
-	    <router-link to="/vue-test/explore/chicago-illinois-us">Chicago</router-link>
-	    <router-link to="/vue-test/explore/new-york-new-york-us">New York</router-link>
-	    <router-link to="/vue-test/explore/tokyo-japan">Japan</router-link>
-	  </p>
-	  <!-- route outlet -->
-	  <!-- component matched by the route will render here -->
-	  <router-view></router-view>
-	</div>
-	<!-- <script src="./vuejs-cdn/app.js"></script> -->
-	<!-- <script>
-		console.log(Vue);
+<body v-on:load="getAllData">
 
-		let obj = {
-			number: 100,
-			method: function(x){return x;}
-		};
-		console.log(obj.method(obj.number));
-	</script> -->
-	<!-- <script type="module" src="./vuejs-cdn/home.vue"></script> -->
-	<script type="text/javascript">
-		//const Home = ()=> import('./vuejs-cdn/templates/home.vue')
-		//import {Home} from './vuejs-cdn/templates/home.vue'
-		/*data() {
-		  return {
-		    objectOfAttrs: {
-		      id: 'container',
-		      class: 'wrapper'
-		    }
-		  }
-		}*/
-		// const Home = { template: '<div>Home</div>' }
+	<div id="wrapper">
 
-		const Home = {
-			template:
-			`<div style="width:100%; float:left;">
-				<h1>{{ title }}</h1>
-				<p @click="check">{{ king }} With template tags</p>
-			</div>`,
-			data(){
-				return {title: "GH home page :P", king: "KING!!!"}
-			},
-			methods: {
-				check() {console.log(5);}
-			}
-		};
+		<header id="header" role="banner">
+			<div class="section-body" style="width:85%; margin:0 auto; padding:10px 0;">
 
-		const About = {
-			template: 
-			`<div><h1>About</h1>
-				<img style="width:300px;" src="maarjin/img/locations/atlanta-georgia-us/pengxiao-xu-Kzycb6V5bK4-unsplash.jpg">
-			</div>` 
-			}
-		const Explore = { template: '<div>EXPLORE</div>' }
-		const ExploreSub = { template: '<div>EXPLORE > SUBDIRECTORY</div>' }
+				<div class="left">
+					<router-link id="logo" to="/" title="home page" style="padding-top: 22px;">
+						<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.28 79.32"><title>maarjin logo</title><path d="M354.61,251.62c0-5.28-.17-9.7-0.35-13.51h11.17l0.52,5.72h0.26A14.65,14.65,0,0,1,379,237.07c5.54,0,9.79,2.86,11.6,7.27h0.17a18.41,18.41,0,0,1,5.54-5.2,16.12,16.12,0,0,1,8.05-2.08c8.14,0,14.29,5.71,14.29,18.44v24.94H405.87v-23c0-6.15-2-9.7-6.23-9.7a6.55,6.55,0,0,0-6.15,4.59,13.86,13.86,0,0,0-.43,3.38v24.77H380.24V256.64c0-5.28-1.91-8.92-6.15-8.92-3.38,0-5.37,2.6-6.15,4.68a8.9,8.9,0,0,0-.52,3.38v24.68H354.61V251.62Z" transform="translate(-354.26 -219.75)"/><path d="M464.32,270.23a54.88,54.88,0,0,0,.69,10.22H453.15l-0.78-4.24h-0.26c-2.77,3.38-7.1,5.2-12.12,5.2-8.57,0-13.68-6.23-13.68-13,0-11,9.87-16.19,24.85-16.19V251.7c0-2.34-1.21-5.54-7.71-5.54a23.81,23.81,0,0,0-11.69,3.2l-2.42-8.49a34.77,34.77,0,0,1,16.45-3.81c14.11,0,18.53,8.31,18.53,18.36v14.81Zm-12.73-9.78c-6.93,0-12.3,1.65-12.3,6.67,0,3.38,2.25,5,5.2,5a7.28,7.28,0,0,0,6.84-4.85,9.43,9.43,0,0,0,.26-2.25v-4.59Z" transform="translate(-354.26 -219.75)"/><path d="M510,270.23a54.89,54.89,0,0,0,.69,10.22H498.88l-0.78-4.24h-0.26c-2.77,3.38-7.1,5.2-12.12,5.2-8.57,0-13.68-6.23-13.68-13,0-11,9.87-16.19,24.85-16.19V251.7c0-2.34-1.21-5.54-7.71-5.54a23.81,23.81,0,0,0-11.69,3.2l-2.42-8.49a34.77,34.77,0,0,1,16.45-3.81c14.12,0,18.53,8.31,18.53,18.36v14.81Zm-12.73-9.78c-6.93,0-12.3,1.65-12.3,6.67,0,3.38,2.25,5,5.2,5a7.28,7.28,0,0,0,6.84-4.85,9.46,9.46,0,0,0,.26-2.25v-4.59Z" transform="translate(-354.26 -219.75)"/><path d="M520.53,252.05c0-6.23-.09-10.3-0.35-13.94h11.26L532,245.9h0.35c2.17-6.23,7.27-8.83,11.43-8.83a13.11,13.11,0,0,1,2.77.26v12.38a19.68,19.68,0,0,0-3.55-.35c-4.85,0-8.14,2.6-9,6.67a15.55,15.55,0,0,0-.26,2.94v21.48H520.53v-28.4Z" transform="translate(-354.26 -219.75)"/><path d="M544.78,288.77c3.38-.26,6.15-1,7.79-2.77,1.91-2,2.6-5.37,2.6-13.77V238.11h13.16v37.32c0,9.18-2,14.81-6,18.44s-10,5.2-16.28,5.2Zm23.9-62.43c0,3.64-2.68,6.58-7.1,6.58a6.48,6.48,0,0,1-6.84-6.58c0-3.72,2.77-6.58,7-6.58A6.51,6.51,0,0,1,568.68,226.33Z" transform="translate(-354.26 -219.75)"/><path d="M592.23,226.33c0,3.64-2.68,6.58-7.1,6.58a6.48,6.48,0,0,1-6.84-6.58c0-3.72,2.77-6.58,7-6.58A6.51,6.51,0,0,1,592.23,226.33Zm-13.59,54.12V238.11H591.8v42.34H578.64Z" transform="translate(-354.26 -219.75)"/><path d="M602.36,251.62c0-5.28-.17-9.7-0.35-13.51h11.43l0.61,5.89h0.26a15.21,15.21,0,0,1,13.08-6.84c8.66,0,15.15,5.8,15.15,18.27v25H629.38V257c0-5.46-1.91-9.18-6.67-9.18a7.23,7.23,0,0,0-6.75,4.94,9.49,9.49,0,0,0-.43,3.29v24.42H602.36V251.62Z" transform="translate(-354.26 -219.75)"/></svg>
+					</router-link>
+				</div><!-- end of divider -->
 
-		// 2. Define some routes
-		// Each route should map to a component.
-		// We'll talk about nested routes later.
-		const routes = [
-		  { path: '/vue-test/', component: Home },
-		  { path: '/vue-test/about', component: About },
-		  { path: '/vue-test/explore', component: Explore },
-		  { path: '/vue-test/explore/:id', component: ExploreSub },
-		]
+				<div class="center"><!-- style="width:100px;" -->
 
-		// 3. Create the router instance and pass the `routes` option
-		// You can pass in additional options here, but let's
-		// keep it simple for now.
-		const router = VueRouter.createRouter({
-		  // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-		  history: VueRouter.createWebHistory(),
-		  routes, // short for `routes: routes`
-		})
+					<div id="mobile-btn" class="icon" style="padding-top:13px;" v-on:click="menuOpen">
+						<button style="background:none;">
+							<img src="img/icon-menu-doner.svg" alt="menu icon" style="width:5.5556vw;" />
+						</button>
+					</div>
 
-		// 5. Create and mount the root instance.
-		const app = Vue.createApp({})
-		// Make sure to _use_ the router instance to make the
-		// whole app router-aware.
-		app.use(router)
+					<nav id="menu" role="navigation" class="mobileNav" style="float:right; padding-top:24px; margin-right:150px;" v-on:click="add">
+						<ul>
+							<li><router-link title="Explore" to="/explore">Explore</router-link></li>
+							<li><router-link title="Attractions" to="/attractions">Attractions</router-link></li>
+							<li><router-link title="Seasonal" to="/seasonal">Seasonal</router-link></li>
+							<li><router-link title="Tours" to="/tours">Tours</router-link></li>
+							<li><router-link title="Blog" to="/blog">Blog</router-link></li>
+						</ul>
+					</nav>
+				</div><!-- end of divider -->
 
-		app.mount('#app')
+				<div id="right" class="right">
 
-		console.log(VueRouter);
-		//console.log($route.params);
-	</script>
-<body>
+					<div class="column-container" style="float:left; width:100%;">
+						<form id="search-bar-top" class="search-bar-top" autocomplete="off" autocorrect="off" style="margin-top: 14px;" v-on:submit="sendQuery">
+							<div id="" class="input" style="width:80%; float:left; height:30px;">
+								<input id="inputSearch" placeholder="Search" type="text" name="search-bar-top-left" v-on:focus="getData">
+								<ul id="auto-list" class="list"></ul>
+							</div>
+							<div id="search-btn" class="search-btn" style="float: right; width:20%; max-width:30px;"><!-- padding-top:13px; margin:0 18px 0; -->
+								<button style="background:none; margin:7px 0 0 7px;">
+									<!-- <img src="img/icon-menu.svg" alt="menu icon"/> -->
+									<img src="/img/icon-search-round.svg" alt="menu icon" style="width:5.5556vw; max-width:18px;" />
+								</button>
+							</div>
+						</form>
+					</div><!-- end of column-container -->
 
+					<div class="column-container nav-right" style="float:left; width:50%; display:none;">
+						<div class="btn-settings">
+							<a class="btn" href="#">.</a>
+							<a class="btn" href="#">.</a>
+							<a class="btn" href="#">.</a>
+							<a class="btn" href="#">.</a>
+							<a class="btn" href="#">.</a>
+						</div>
+					</div><!-- end of column-container -->
+				</div><!-- end of divider -->
+
+			</div><!-- end of section-body -->
+		</header>
+
+
+		<div id="content">
+			<div class="section">
+				<div style="width:100%; padding-top:125px;"></div>
+			</div><!-- end of section -->
+
+			<router-view></router-view>
+
+		</div><!-- end of content -->
+
+		<footer id="footer" style="display:none;">
+			<div class="main-wide">
+				<div class="section spacer-bottom-2x">
+
+					<div class="advert-banner-narrow">ADVERT</div>
+
+				</div><!-- end of section -->
+			</div><!-- end of main-wide -->
+		</footer>
+
+	</div><!-- end of wrapper -->
+
+	<script type="module" src="/App.js"></script>
+
+		<script async src="https://www.viator.com/orion/partner/widget.js"></script>
+		<script async src="https://partners.vtrcdn.com/static/scripts/banners/banners.js"></script>
+		<script type="text/javascript" src="//cdn0.agoda.net/images/sherpa/js/sherpa_init1_08.min.js"></script><script type="text/javascript">
+		var stg = new Object(); stg.crt="4898135834280";stg.version="1.04"; stg.id=stg.name="adgshp1104334795"; stg.width="900px"; stg.height="266px";stg.ReferenceKey="c0fW3EXq4SP/EidtnvquYw=="; stg.Layout="Oneline"; stg.Language="en-us";stg.Cid="1827487"; stg.DestinationName="";stg.OverideConf=false; new AgdSherpa(stg).initialize();
+		</script>
 </body>
 </html>
