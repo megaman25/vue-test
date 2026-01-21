@@ -1,3 +1,30 @@
+/*
+CREATED: Monday, January 22, 2024, 10:28:29 PM
+MODIFIED: Thursday, April 25, 2024, 6:28:45 PM
+MODIFIED: Tuesday, July 23, 2024, 10:07:57 PM - added favorite icons placeholders on thumbnails.
+*/
+
+// FILTERING FOR FEATURED LOCATIONS
+function featured(){
+	let D = window.db.worldCitiesUrl;
+	let ary = []; let n = 0;
+	let L = ['atlanta-georgia-us','los-angeles-california-us','savannah-georgia-us','denver-colorado-us','new-york-new-york-us','miami-florida-us','chicago-illinois-us','charlotte-north-carolina-us','memphis-tennessee-us','detroit-michigan-us','philadelphia-pennsylvania-us','tokyo-tokyo-jp']
+	for(let i=0; i < L.length; i++){
+		for(let a=0; a < D.length; a++){
+			if(L[i] == D[a].url){
+				ary[n] = {};
+				ary[n].key = a;
+				ary[n].location = D[a];
+				ary[n].location.href = relativePath+'/explore/'+ary[n].location.url;
+			};
+		};
+		n++;
+	};
+	console.log(window.db, ary);
+	return ary;
+}; 
+
+
 const Explore = { template: `
 	<div class="section" style="margin-bottom:47px !important;">
 
@@ -12,29 +39,36 @@ const Explore = { template: `
 				<div class="carousel card-304x370">
 					<div class="xaxis">
 
-						<div class="card" style="margin-left:0;">
-							<div class="image"><img src="img/bernardo-lorena-ponte-ddcbYY4tLyU-unsplash.jpg" /></div>
+						<div class="card" v-for="item in featured">
+							<div class="image"><div class="fave" :data-url="item.location.url">{{item.location.url}}</div><img src="" /></div>
+							<div class="caption"><a :href="item.location.href">
+								<h3>{{item.location.city}} {{item.location.admin_name}} {{item.key}}</h3>
+								<p>Search 100s of travel sites to compare</p></a>
+							</div>
+						</div><!-- end of card -->
+						<div class="card">
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Big names, great deals</h3>
 								<p>Search 100s of travel sites to compare</p>
 							</div>
 						</div><!-- end of card -->
 						<div class="card">
-							<div class="image"><img src="img/adrien-eBKbKMiE03c-unsplash.jpg" /></div>
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Book with flexibility</h3>
 								<p>Use our "no change fees" filter for flights that waive fees</p>
 							</div>
 						</div><!-- end of card -->
 						<div class="card">
-							<div class="image"><img src="img/reno-laithienne--WU3Xcoajis-unsplash.jpg" /></div>
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Track prices</h3>
 								<p>Not ready to book? Set alerts for when prices drop</p>
 							</div>
 						</div><!-- end of card -->
-						<div class="card" style="margin-right:0;">
-							<div class="image"><img src="img/adrian-hernandez-VmJR8RnQ3ak-unsplash.jpg" /></div>
+						<div class="card">
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>More than flights</h3>
 								<p>Find deals for your entire trip from hotels to rental cars</p>
@@ -93,15 +127,29 @@ const Explore = { template: `
 				<div class="carousel card-624x370">
 					<div class="xaxis">
 
-						<div class="card" style="margin-left:0;">
-							<div class="image"><img src="" /></div>
+						<div class="card">
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Put work on mute for your next trip.</h3>
 								<p>Say no to notifications &ndash; here's how to create the perfect away message using Slack.</p>
 							</div>
 						</div><!-- end of card -->
-						<div class="card" style="margin-right:0;">
-							<div class="image"><img src="" /></div>
+						<div class="card">
+							<div class="image"><div class="fave"></div><img src="" /></div>
+							<div class="caption">
+								<h3>Try an EV for your next rented ride.</h3>
+								<p>There's a first for everything &ndash; here's what to kow before renting an electric car.</p>
+							</div>
+						</div><!-- end of card -->
+						<div class="card">
+							<div class="image"><div class="fave"></div><img src="" /></div>
+							<div class="caption">
+								<h3>Put work on mute for your next trip.</h3>
+								<p>Say no to notifications &ndash; here's how to create the perfect away message using Slack.</p>
+							</div>
+						</div><!-- end of card -->
+						<div class="card">
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Try an EV for your next rented ride.</h3>
 								<p>There's a first for everything &ndash; here's what to kow before renting an electric car.</p>
@@ -131,28 +179,28 @@ const Explore = { template: `
 					<div class="xaxis">
 
 						<div class="card">
-							<div class="image"><img src="" /></div>
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Big names, great deals</h3>
 								<p>Search 100s of travel sites to compare</p>
 							</div>
 						</div>
 						<div class="card">
-							<div class="image"><img src="" /></div>
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Book with flexibility</h3>
 								<p>Use our "no change fees" filter for flights that waive fees</p>
 							</div>
 						</div>
 						<div class="card">
-							<div class="image"><img src="" /></div>
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>Track prices</h3>
 								<p>Not ready to book? Set alerts for when prices drop</p>
 							</div>
 						</div>
 						<div class="card">
-							<div class="image"><img src="" /></div>
+							<div class="image"><div class="fave"></div><img src="" /></div>
 							<div class="caption">
 								<h3>More than flights</h3>
 								<p>Find deals for your entire trip from hotels to rental cars</p>
@@ -166,6 +214,13 @@ const Explore = { template: `
 		</div>
 
 	</div>`,
-	data(){return {title:"EXPLORE"};}
-	};
+	data(){return {
+			title:"EXPLORE",
+			featured: featured(),
+		};
+	},
+	meta:{
+		title:"Explore - FROM SINGLE FILE COMPONENT FILE",
+	}
+};
 export default Explore;

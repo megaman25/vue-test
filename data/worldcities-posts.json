@@ -1,0 +1,172 @@
+[
+
+	{
+		"url":"atlanta-georgia-us",
+		"title":"Atlanta",
+		"subtitle":"Georgia",
+		"summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+		"metadata": ["item 1","item 2","item 3"], 
+		"thumbs":[
+			{
+				"img": "/maarjin/img/locations/atlanta-georgia-us/lance-asper-x_I-mS-ylxs-unsplash.jpg",
+				"url":"the-varsity",
+				"header":"Metro",
+				"subheader":"Atlanta"
+			},
+			{
+				"img": "/maarjin/img/locations/atlanta-georgia-us/pengxiao-xu-Kzycb6V5bK4-unsplash.jpg",
+				"url":"georgia-dome",
+				"header":"Downtown",
+				"subheader":"Atlanta"
+			},
+			{
+				"img": "/maarjin/img/locations/atlanta-georgia-us/stephen-cook-tjdu7p_PaEM-unsplash.jpg",
+				"url":"lenox-mall",
+				"header":"title of thumb 3",
+				"subheader":"Buckhead"
+			},
+			{
+				"img": "/maarjin/img/locations/atlanta-georgia-us/venti-views-oiC4Z7BUYAc-unsplash.jpg",
+				"url":"camp-creek",
+				"header":"Camp Creek",
+				"subheader":"Atlanta"
+			},
+		]
+	},
+
+	{
+		"url":"los-angeles-california-us", 
+		"title":"Los Angeles", 
+		"subtitle":"California",
+		"summary": "lorem ipsum",
+		"metadata": ["item 1","item 2","item 3"], 
+		"thumbs":[
+			{
+				"img": "/maarjin/img/locations/los-angeles-california-us/cedric-letsch-UZVlSjrIJ3o-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 1",
+				"subheader":"subheader 1"
+			},
+			{
+				"img": "/maarjin/img/locations/los-angeles-california-us/venti-views-cHRDevKFDBw-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 2",
+				"subheader":"subheader 2"
+			},
+			{
+				"img": "/maarjin/img/locations/los-angeles-california-us/venti-views-cHRDevKFDBw-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 3",
+				"subheader":"subheader 3"
+			},
+			{
+				"img": "/maarjin/img/locations/los-angeles-california-us/cedric-letsch-UZVlSjrIJ3o-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 4",
+				"subheader":"subheader 4"
+			},
+		]
+	},
+
+	{
+		"url":"chicago-illinois-us",
+		"title":"title stuff",
+		"subtitle":"subtitle stuff",
+		"summary": "lorem ipsum",
+		"metadata": ["item 1","item 2","item 3"], 
+		"thumbs":[
+			{
+				"img": "/maarjin/img/locations/chicago-illinois-us/neal-kharawala-XXA8PTuLD1Y-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 1",
+				"subheader":"subheader 1"
+			},
+			{
+				"img": "/maarjin/img/locations/chicago-illinois-us/sawyer-bengtson--csZbF1o5_k-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 2",
+				"subheader":"subheader 2"
+			},
+			{
+				"img": "/maarjin/img/locations/chicago-illinois-us/sawyer-bengtson-tnv84LOjes4-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 3",
+				"subheader":"subheader 3"
+			},
+			{
+				"img": "/maarjin/img/locations/chicago-illinois-us/neal-kharawala-XXA8PTuLD1Y-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 4",
+				"subheader":"subheader 4"
+			},
+		]
+	},
+
+	{
+		"url":"new-york-new-york-us", 
+		"title":"New York City", 
+		"subtitle":"The Big Apple",
+		"summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+		"metadata": ["item 1","item 2","item 3"], 
+		"thumbs":[
+			{
+				"img": "/maarjin/img/locations/new-york-new-york-us/andre-benz-_T35CPjjSik-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 1",
+				"subheader":"subheader 1"
+			},
+			{
+				"img": "/maarjin/img/locations/new-york-new-york-us/sam-trotman-2f8SXXbP9nY-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 2",
+				"subheader":"subheader 2"
+			},
+			{
+				"img": "/maarjin/img/locations/new-york-new-york-us/triston-dunn-rfj_wOYQkus-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 3",
+				"subheader":"subheader 3"
+			},
+			{
+				"img": "/maarjin/img/locations/new-york-new-york-us/andre-benz-_T35CPjjSik-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 4",
+				"subheader":"subheader 4"
+			},
+		]
+	},
+
+	{
+"		url":"dubai-arab-emirates", 
+"		title":"Dubai Arab Emirates", 
+"		subtitle":"Middle East",
+"		summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"		metadata": ["Latitude","Longitude","Temperature"], 
+"		thumbs":[
+			{
+				"img": "/maarjin/img/locations/dubai-arab-emirates/ashim-d-silva-CwJb7ly-iqc-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 1",
+				"subheader":"subheader 1"
+			},
+			{
+				"img": "/maarjin/img/locations/dubai-arab-emirates/david-rodrigo-Fr6zexbmjmc-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 2",
+				"subheader":"subheader 2"
+			},
+			{
+				"img": "/maarjin/img/locations/dubai-arab-emirates/ishan-seefromthesky-Iqk8OFDJWnk-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 3",
+				"subheader":"subheader 3"
+			},
+			{
+				"img": "/maarjin/img/locations/dubai-arab-emirates/nick-fewings-v3F5gFBRwCA-unsplash.jpg",
+				"url":"/maarjin/explore/url-location",
+				"header":"title of thumb 4",
+				"subheader":"subheader 4"
+			},
+		]
+	}
+]
