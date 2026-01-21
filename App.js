@@ -42,12 +42,6 @@ import Flights from './sections/flights.js';
 import Hotels from './sections/hotels.js';
 import CityProfile from './sections/cityProfile.js';
 import Results from './sections/results.js';
-import Timer from './sections/timer.js';
-import TravelPlanner from './sections/travelplanner.js';
-import Agoda from './components/agoda.js';
-import Expedia from './components/expedia.js';
-import HotelsDotCom from './components/hotelsDotCom.js';
-import Vrbo from './components/vrbo.js';
 import solo from './components/components.js';
 import Modal from './components/modal.js';
 import Header from './components/header.js';
@@ -149,4 +143,5 @@ app.component('Agoda', Agoda);
 app.component('Expedia', Expedia);
 app.component('Modal', Modal);
 app.use(router);
+
 app.mount('#wrapper');
