@@ -66,7 +66,6 @@ const routes = [
 	{ path:'/seasonal', component: Seasonal, meta:{title: Seasonal.meta.title} },
 	{ path:'/tours', component: Tours, meta:{title: Tours.meta.title} },
 	{ path:'/r', component: Results, meta:{title:Results.meta.title} },
-	{ path:'/timer', component: Timer, meta:{title:Timer.meta.title} },
 	{ path:'/travelplanner', component: TravelPlanner, meta:{title:TravelPlanner.meta.title} },
 ];
 
@@ -145,3 +144,4 @@ app.component('Modal', Modal);
 app.use(router);
 
 app.mount('#wrapper');
+
