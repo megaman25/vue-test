@@ -1,11 +1,4 @@
 /*
-CREATED: Monday, January 22, 2024, 10:28:26 PM
-LAST MODIFIED: Wednesday, April 17, 2024, 3:45:06 PM
-MODIFIED: Sunday, July 28, 2024, 3:13:41 PM - Fixed bug that disallowed multiple instances of a recursion function from working properly.
-MODIFIED: Sunday, July 28, 2024, 11:05:31 PM - Did a quick solution for adding items to favorites.
-MODIFIED: Tuesday, July 30, 2024, 6:09:28 PM - got recursion to work properly. Made the mistake of placing 'E.parentNode' in recursion parameter within the else condition; Instead placed VALUE string in the parameter of recursion. Minor mistakes like this can literally take up the whole day. Otherwise the code worked as intended from the start.
-MODIFIED: Tuesday, July 30, 2024, 7:05:58 PM - Completed part of dynamically adding function to eventDelegation function. Now it's multipurpose and can be used multiple times in this and other projects.
-
 RESUME: January 16, 2026, @4:04PM - Finish the job and apply what I've learned the 2 years since.
 RESUME: 2026/01/18 @12:30pm -> @1:30pm - Working on cityProfile.js.
 MODIFIED: Sunday, January 18, 2026 @10:14:51 PM SUCCESSFUL: - have city data populate in cityProfile.js
@@ -33,16 +26,12 @@ import {addTitle, coordinateDistanceRange, db, find, g, Itinerary, Login, menuOp
 import Thumb from './sections/thumb.js';
 import Home from './sections/home.js';
 import Explore from './sections/explore.js';
-import Attractions from './sections/attractions.js';
-import Seasonal from './sections/seasonal.js';
 import Tours from './sections/tours.js';
 import Blog from './sections/blog.js';
 import Post from './sections/post.js';
-import Flights from './sections/flights.js';
-import Hotels from './sections/hotels.js';
 import CityProfile from './sections/cityProfile.js';
 import Results from './sections/results.js';
-import solo from './components/components.js';
+//import TravelPlanner from './sections/travelplanner.js';
 import Modal from './components/modal.js';
 import Header from './components/header.js';
 import Footer from './components/footer.js';
@@ -66,7 +55,8 @@ const routes = [
 	{ path:'/seasonal', component: Seasonal, meta:{title: Seasonal.meta.title} },
 	{ path:'/tours', component: Tours, meta:{title: Tours.meta.title} },
 	{ path:'/r', component: Results, meta:{title:Results.meta.title} },
-	//{ path:'/travelplanner', component: TravelPlanner, meta:{title:TravelPlanner.meta.title} },
+	{ path:'/timer', component: Timer, meta:{title:Timer.meta.title} },
+	// { path:'/travelplanner', component: TravelPlanner, meta:{title:TravelPlanner.meta.title} },
 ];
 
 const router = VueRouter.createRouter({
@@ -138,12 +128,6 @@ app.component('Form', Form);
 app.component('Login', Login);
 app.component('InternalComponent', INSIDE);
 app.component('ExternalComponent', Thumb);
-app.component('Agoda', Agoda);
-app.component('Expedia', Expedia);
 app.component('Modal', Modal);
 app.use(router);
-
 app.mount('#wrapper');
-
-
-
