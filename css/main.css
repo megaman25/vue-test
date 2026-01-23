@@ -35,145 +35,120 @@ textarea {width:100%; max-width:100%;}
 ::-ms-input-placeholder { /* Microsoft Edge */ color:#7f7f7f;}
 
 
-/* COMMON UI ELEMENTS - inserted at 2024/09/02 @10:34am*/
+/* COMMON UI ELEMENTS*/
 
-	/*BACKGROUND*/
-	.bgcolor-black {background:#000;}
-	.bgcolor-blue {background:#00f;}
-	.bgcolor-green {background:#0f0;}
-	.bgcolor-red {background:red;}
-	.bgcolor-white {background:white;}
-	/*TEXT COLOR*/
-	.color-black {color:black;}
-	.color-blue {color:blue;}
-	.color-red {color:red;}
-	.color-white {color:white;}
-	/*BORDER COLOR*/
-	.border-black {color:1px solid black;}
-	.border-red {color:1px solid red;}
+/*BACKGROUND*/
+.bgcolor-black {background:#000;}
+.bgcolor-blue {background:#00f;}
+.bgcolor-green {background:#0f0;}
+.bgcolor-red {background:red;}
+.bgcolor-white {background:white;}
+/*TEXT COLOR*/
+.color-black {color:black;}
+.color-blue {color:blue;}
+.color-red {color:red;}
+.color-white {color:white;}
+/*BORDER COLOR*/
+.border-black {color:1px solid black;}
+.border-red {color:1px solid red;}
 
-	.border-bottom {border:none; /*border-bottom:1px solid #000;*/}
-	.centered {margin:0 auto;}
-	
-
-	.height-100 {height:100%;}
-	.width-100,
-	button.width-100 {width:100%;}
-	.width-70 {width:70%;}
-	.width-50 {width:50%;}
-
-	.margin-bottom-5 {margin-bottom:5px;}
-	.margin-bottom-10 {margin-bottom:10px;}
-	.margin-bottom-15 {margin-bottom:15px;}
-	.margin-bottom-20 {margin-bottom:20px;}
-	.margin-bottom-25 {margin-bottom:25px;}
-	.margin-bottom-30 {margin-bottom:30px;}
-	.margin-bottom-35 {margin-bottom:35px;}
-	.margin-bottom-40 {margin-bottom:40px;}
-	.margin-bottom-45 {margin-bottom:45px;}
-	.margin-bottom-50 {margin-bottom:50px;}
-
-	/*ul.flex-child li,
-	ul.flex-child ol {display:flex;}
-	ul.li-width-100 li,
-	ul.li-width-100 ol {width:100%}
-	ul.hz-list-item li,
-	ul.hz-list-item ol {flex-direction:row;}
-	ul.vt-list-item li,
-	ul.vt-list-item ol {flex-direction:column;}
-	ul.space-between li,
-	ul.space-between ol {justify-content:space-between;}*/
-
-	.txt-align-center {text-align:center;}
-	.txt-align-left {text-align:left;}
-	.txt-align-right {text-align:right;}
-	.txt-lrg-20 {font-size:3.6rem;}
-	.txt-lrg-19 {font-size:3.5rem;}
-	.txt-lrg-18 {font-size:3.4rem;}
-	.txt-lrg-17 {font-size:3.3rem;}
-	.txt-lrg-16 {font-size:3.2rem;}
-	.txt-lrg-15 {font-size:3.1rem;}
-	.txt-lrg-14 {font-size:3.0rem;}
-	.txt-lrg-13 {font-size:2.9rem;}
-	.txt-lrg-12 {font-size:2.8rem;}
-	.txt-lrg-11 {font-size:2.7rem;}
-	.txt-lrg-10 {font-size:2.6rem;}
-	.txt-lrg-9 {font-size:2.5rem;}
-	.txt-lrg-8 {font-size:2.4rem;}
-	.txt-lrg-7 {font-size:2.3rem;}
-	.txt-lrg-6 {font-size:2.2rem;}
-	.txt-lrg-5 {font-size:2.1rem;}
-	.txt-lrg-4 {font-size:2.0rem;}
-	.txt-lrg-3 {font-size:1.9rem;}
-	.txt-lrg-2 {font-size:1.8rem;}
-	.txt-lrg-1 {font-size:1.7rem;}
-	.txt-mid {font-size:1.6rem;}
-	.txt-sml-1 {font-size:1.5rem;}
-	.txt-sml-2 {font-size:1.4rem;}
-	.txt-sml-3 {font-size:1.3rem;}
-	.txt-sml-4 {font-size:1.2rem;}
-	.txt-sml-5 {font-size:1.1rem;}
-	.txt-sml-6 {font-size:1.0rem;}
-
-	.bold-100 {font-weight:100;}
-	.bold-200 {font-weight:200;}
-	.bold-300 {font-weight:300;}
-	.bold-400 {font-weight:400;}
-	.bold-500 {font-weight:500;}
-	.bold-600 {font-weight:600;}
-	.bold-700 {font-weight:700;}
-	.bold-800 {font-weight:800;}
-	.bold-900 {font-weight:900;}
-
-	.uppercase {text-transform:uppercase}
+.border-bottom {border:none; /*border-bottom:1px solid #000;*/}
+.centered {margin:0 auto;}
 
 
-	/*.space-between {justify-content:space-between;}*/
+.height-100 {height:100%;}
+.width-100,
+button.width-100 {width:100%;}
+.width-70 {width:70%;}
+.width-50 {width:50%;}
 
-	/*.vt-flex-center {display:flex; align-items:center;}
-	.hz-flex-center > * {margin:0 1em;}
-	.hz-flex-center > *:first-child {margin-left:0;}
-	.hz-flex-center > *:last-child {margin-right:0;}*/
+.margin-bottom-5 {margin-bottom:5px;}
+.margin-bottom-10 {margin-bottom:10px;}
+.margin-bottom-15 {margin-bottom:15px;}
+.margin-bottom-20 {margin-bottom:20px;}
+.margin-bottom-25 {margin-bottom:25px;}
+.margin-bottom-30 {margin-bottom:30px;}
+.margin-bottom-35 {margin-bottom:35px;}
+.margin-bottom-40 {margin-bottom:40px;}
+.margin-bottom-45 {margin-bottom:45px;}
+.margin-bottom-50 {margin-bottom:50px;}
+
+.txt-align-center {text-align:center;}
+.txt-align-left {text-align:left;}
+.txt-align-right {text-align:right;}
+.txt-lrg-20 {font-size:3.6rem;}
+.txt-lrg-19 {font-size:3.5rem;}
+.txt-lrg-18 {font-size:3.4rem;}
+.txt-lrg-17 {font-size:3.3rem;}
+.txt-lrg-16 {font-size:3.2rem;}
+.txt-lrg-15 {font-size:3.1rem;}
+.txt-lrg-14 {font-size:3.0rem;}
+.txt-lrg-13 {font-size:2.9rem;}
+.txt-lrg-12 {font-size:2.8rem;}
+.txt-lrg-11 {font-size:2.7rem;}
+.txt-lrg-10 {font-size:2.6rem;}
+.txt-lrg-9 {font-size:2.5rem;}
+.txt-lrg-8 {font-size:2.4rem;}
+.txt-lrg-7 {font-size:2.3rem;}
+.txt-lrg-6 {font-size:2.2rem;}
+.txt-lrg-5 {font-size:2.1rem;}
+.txt-lrg-4 {font-size:2.0rem;}
+.txt-lrg-3 {font-size:1.9rem;}
+.txt-lrg-2 {font-size:1.8rem;}
+.txt-lrg-1 {font-size:1.7rem;}
+.txt-mid {font-size:1.6rem;}
+.txt-sml-1 {font-size:1.5rem;}
+.txt-sml-2 {font-size:1.4rem;}
+.txt-sml-3 {font-size:1.3rem;}
+.txt-sml-4 {font-size:1.2rem;}
+.txt-sml-5 {font-size:1.1rem;}
+.txt-sml-6 {font-size:1.0rem;}
+
+.bold-100 {font-weight:100;}
+.bold-200 {font-weight:200;}
+.bold-300 {font-weight:300;}
+.bold-400 {font-weight:400;}
+.bold-500 {font-weight:500;}
+.bold-600 {font-weight:600;}
+.bold-700 {font-weight:700;}
+.bold-800 {font-weight:800;}
+.bold-900 {font-weight:900;}
+
+.uppercase {text-transform:uppercase}
+
+input[type='text'], input[type='search'] {width:100%;}
+input::placeholder {color:#aaa; opacity:1;}
 
 
-	input[type='text'], input[type='search'] {width:100%;}
-	input::placeholder {color:#aaa; opacity:1;}
+.flex {display:flex;}
+.flex-1 {flex:1;}
+.flex-content-start{justify-content:start;}
+.flex-content-end{justify-content:end;}
+.flex-dir-column {flex-direction:column;}
+.flex-dir-row {flex-direction:row;}
+.flex-space-between {justify-content:space-between;}
+.flex-space-center {justify-content:center;}
 
-	
-	.flex {display:flex;}
-	/*.flex-content-center {display:flex; justify-content:center; align-items:center;}*/
-	.flex-1 {flex:1;}
-	.flex-content-start{justify-content:start;}
-	.flex-content-end{justify-content:end;}
-	.flex-dir-column {flex-direction:column;}
-	.flex-dir-row {flex-direction:row;}
-	.flex-space-between {justify-content:space-between;}
-	.flex-space-center {justify-content:center;}
+.flex-center {align-items:center; justify-content:center;}
+.flex-center-vt {align-items:center;}
+.flex-center-hz {justify-content:center;}
 
-	.flex-center {align-items:center; justify-content:center;}
-	.flex-center-vt {align-items:center;}
-	.flex-center-hz {justify-content:center;}
+.gap-5 {gap:5px;}
+.gap-10 {gap:10px;}
+.gap-15 {gap:15px;}
+.gap-20 {gap:20px;}
+.gap-25 {gap:25px;}
+.gap-30 {gap:30px;}
+.gap-35 {gap:35px;}
+.gap-40 {gap:40px;}
+.gap-45 {gap:45px;}
+.gap-50 {gap:50px;}
+.gap-75 {gap:75px;}
+.gap-100 {gap:100px;}
+.gap-150 {gap:150px;}
+.gap-200 {gap:200px;}
 
-	.gap-5 {gap:5px;}
-	.gap-10 {gap:10px;}
-	.gap-15 {gap:15px;}
-	.gap-20 {gap:20px;}
-	.gap-25 {gap:25px;}
-	.gap-30 {gap:30px;}
-	.gap-35 {gap:35px;}
-	.gap-40 {gap:40px;}
-	.gap-45 {gap:45px;}
-	.gap-50 {gap:50px;}
-	.gap-75 {gap:75px;}
-	.gap-100 {gap:100px;}
-	.gap-150 {gap:150px;}
-	.gap-200 {gap:200px;}
-
-	.image img {display:block;} /*resolve height issue with parent <div> box around <img> tag*/
-
-/*font-family: "SegoeUI", Helvetica Neue, Arial,sans-serif; -webkit-font-smoothing: antialiased;*/
-
-/*#id-3882 { style="background:url('img/las-vegas-nevada-us/pexels-snapwire-165799.jpg'); background-size:cover; background-position:10% 70%;"}*/
+.image img {display:block;} /*resolve height issue with parent <div> box around <img> tag*/
 
 
 	.section .bkgnd {position: absolute; top: 0; width: 100%; z-index:0;}
@@ -441,6 +416,5 @@ PORTFOLIO INSPIRATION https://www.youtube.com/@codehal
 
 Quick CSS Loading Animation | Html CSS Animation Effects (Short Tutorial) #html #css #shorts  - https://www.youtube.com/watch?v=4FgDNUaOcto
 [PSEUDO ELEMENT ::before] https://www.youtube.com/watch?v=LQsjNmkqUOc
-
 
 */
