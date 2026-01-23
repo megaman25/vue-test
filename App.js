@@ -26,7 +26,7 @@ import {addTitle, coordinateDistanceRange, db, find, g, Itinerary, Login, menuOp
 import Thumb from './sections/thumb.js';
 import Home from './sections/home.js';
 import Explore from './sections/explore.js';
-import Tours from './sections/tours.js';
+//import Tours from './sections/tours.js';
 import Blog from './sections/blog.js';
 import Post from './sections/post.js';
 import CityProfile from './sections/cityProfile.js';
@@ -47,15 +47,9 @@ const routes = [
 	{ path:'/', component: Home, meta:{title:Home.meta.title} },
 	{ path:'/explore', component: Explore, meta:{title:Explore.meta.title} },
 	{ path:'/explore/:id', component: CityProfile, meta:{title: CityProfile.meta.title} },
-	{ path:'/flights', component: Flights, meta:{title:Flights.meta.title} },
-	{ path:'/hotels', component: Hotels, meta:{title: Hotels.meta.title} },
-	{ path:'/attractions', component: Attractions, meta:{title: Attractions.meta.title} },
 	{ path:'/blog', component: Blog, meta:{title: Blog.meta.title} },
 	{ path:'/blog/:id', component: Post, meta:{title: Post.meta.title} },
-	{ path:'/seasonal', component: Seasonal, meta:{title: Seasonal.meta.title} },
-	{ path:'/tours', component: Tours, meta:{title: Tours.meta.title} },
 	{ path:'/r', component: Results, meta:{title:Results.meta.title} },
-	{ path:'/timer', component: Timer, meta:{title:Timer.meta.title} },
 	// { path:'/travelplanner', component: TravelPlanner, meta:{title:TravelPlanner.meta.title} },
 ];
 
