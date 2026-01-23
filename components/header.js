@@ -1,19 +1,5 @@
 import {addTitle, coordinateDistanceRange, db, faveList, find, g, Login, menuOpen, relativePath} from '../utils.js';
 
-/*
-CREATED: Monday, January 22, 2024, 10:28:27 PM
-MODIFIED: Saturday, March 9, 2024 - same time when footer was last edited.
-MODIFIED: Saturday, July 6, 2024, 6:05:57 PM - implimenting the menu show/hide toggle in a much more simple way opposed to a library.
-MODIFIED: Sunday, July 7, 2024, 10:50:55 PM
-MODIFIED: Wednesday, July 31, 2024, 6:03:27 PM - Successfull added list of favorites to favorates modal.
-MODIFIED: Tuesday, August 6, 2024, 10:11:46 PM - Created event delegation within modal. Event listener attached to modal parent.
-10:17AM - thought of a dynamic solution in seconds for multiple if-conditions for event delegation
-*/
-
-/*window.messageHeader = "Message from Header.js"
-		console.log("HEADER", Date(), db);*/
-
-
 const Header = {
 	data(){
 		return { 
@@ -21,8 +7,8 @@ const Header = {
 		}
 	},
 	template:`
-		<header id="header" class="header" role="banner">
-			<div class="section-body">
+		<header id="header" class="header width-100" role="banner">
+			<div class="section-body flex centered">
 
 				<div class="left">
 					<router-link id="logo" to="/" title="home page">
