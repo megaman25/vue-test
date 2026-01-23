@@ -131,7 +131,7 @@ const INSIDE = {
 	 props: ['postTitle']
 };
 
-app.component('TravelPlaner', TravelPlanner);
+//app.component('TravelPlaner', TravelPlanner);
 app.component('Header', Header);
 app.component('Footer', Footer);
 app.component('Form', Form);
@@ -144,5 +144,6 @@ app.component('Modal', Modal);
 app.use(router);
 
 app.mount('#wrapper');
+
 
 
