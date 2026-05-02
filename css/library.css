@@ -1,0 +1,35 @@
+.flex {display:flex;}
+/*.flex-content-center {display:flex; justify-content:center; align-items:center;}*/
+.flex-1 {flex:1;}
+.flex-content-start{justify-content:start;}
+.flex-content-end{justify-content:end;}
+.flex-dir-column {flex-direction:column;}
+.flex-dir-row {flex-direction:row;}
+.flex-space-between {justify-content:space-between;}
+.flex-space-center {justify-content:center;}
+
+.flex-center {align-items:center; justify-content:center;}
+.flex-center-vt {align-items:center;}
+.flex-center-hz {justify-content:center;}
+
+.gap-5 {gap:5px;}
+.gap-10 {gap:10px;}
+.gap-15 {gap:15px;}
+.gap-20 {gap:20px;}
+.gap-25 {gap:25px;}
+.gap-30 {gap:30px;}
+.gap-35 {gap:35px;}
+.gap-40 {gap:40px;}
+.gap-45 {gap:45px;}
+.gap-50 {gap:50px;}
+.gap-75 {gap:75px;}
+.gap-100 {gap:100px;}
+.gap-150 {gap:150px;}
+.gap-200 {gap:200px;}
+
+.image img {display:block;} /*resolve height issue with parent <div> box around <img> tag*/
+
+.width-fit-content {width: fit-content;}
+.height-fit-content {height: fit-content;}
+.min-width-fit-content {min-width: fit-content;}
+.min-height-fit-content {min-height: fit-content;}
