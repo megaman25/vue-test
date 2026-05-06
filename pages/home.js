@@ -3,17 +3,10 @@ console.log(db);
 
 const Home = {
 	template:
-	`<div class="section spacer-bottom-4x feature_area">
-
-		<div class="bkgnd" style="/*display:none;*/">
-			<div class="image">
-				<!-- <img src="/itinerary/img/Travel Destination Booking Page Screen by K Broto Roy Durlov.jpg" /> -->
-				<!-- <div style="background-image: linear-gradient(to bottom, rgba(0, 0, 0,0.3) 10%, rgb(0, 0, 0, 0.07) 20%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 100%); position:absolute; top:0; width:100%; height:100%;"></div> -->
-			</div>
-		</div>
+	`<div class="section feature_area">
 
 		<div class="content-margin">
-			<div class="fullWidth" style="margin-top:235px;">
+			<div class="fullWidth" style="margin-top:150px;">
 
 				<div class="title width-70">
 					<h1 style="color:#40517b;">Turn your calendar into automatic time tracking</h1>
