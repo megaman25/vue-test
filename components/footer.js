@@ -9,7 +9,7 @@ const Footer = {
     return { count: 0 }
   },
   template: 
-    `<footer id="footer">
+    `<footer id="footer" style="display:none;">
       <div class="main-wide">
         <div class="section spacer-bottom-2x">THIS IS THE FOOTER FROM FOOTER.JS
 
