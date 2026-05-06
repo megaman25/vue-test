@@ -7,7 +7,7 @@ const Header = {
 		}
 	},
 	template:`
-	<div class="header">
+	<div class="header" style="display:none;">
 		<div class="mn flex flex-center-vt gap-100" style="margin:0 50px;">
 			<div class="logo">
 				<a href="/"><img src="ui/img/home/logo.png" /></a>
