@@ -83,7 +83,7 @@ const Home = {
 	</div><!-- end of section -->`,
 	data(){},
 	meta:{
-		title:"World Clock - Home Page"
+		title:"Connects Calendar to Time Tracker"
 	}
 };
 
