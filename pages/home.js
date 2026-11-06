@@ -70,7 +70,7 @@ const Home = {
 	</div>`,
 	data(){},
 	meta:{
-		title:"Connects Calendar to Time Tracker"
+		title:"A growing collection of free online tools designed to make everyday tasks easier, faster, and smarter."
 	}
 };
 
