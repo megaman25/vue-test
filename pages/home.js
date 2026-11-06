@@ -3,84 +3,71 @@ console.log(db);
 
 const Home = {
 	template:
-	`<div class="section feature_area">
+	`	<section class="flex flex-dir-column flex-1">
+		<h1>Everyday Toolbox</h1>
+		<h2 class="tagline">Small tools. Big solutions.</h2>
+		<p class="tagline">A growing collection of free online tools designed to make everyday tasks easier, faster, and smarter.</p>
+		<input placeholder="What would you like to accomplish?" style="border:1px solid #000;">
+		<p class="tagline">Whether you're solving a problem, planning your next project, making a decision, or just looking for a better way to get something done, you'll find useful tools to help along the way.</p>
+		<h2>**Find a tool. Get things done. Make life a little easier.**</h2>
+		<button>[Explore All Tools]</button>
+	</section>
 
-		<div class="content-margin">
-			<div class="fullWidth" style="margin-top:150px;">
+	<section>
+		<div>
+			<h2>What can we help you with?</h2>
+			<p>From quick calculations and creative ideas to planning, productivity, and everyday problem-solving, discover tools designed to make life a little simpler.</p>
+		</div>
 
-				<div class="title width-70">
-					<h1 style="color:#40517b;">Turn your calendar into automatic time tracking</h1>
-					<div class="txt-lrg-20" style="line-height:1.2em;">Connect your calendar once—your time logs start themselves. No timers, no interruptions, no forgotten hours.</div>
-				</div>
+		<div>
+			<h2>Money & Finance</h2>
+			<p>Make sense of the numbers. Calculate budgets, savings, expenses, and more.</p>
+		</div>
 
-				<div class="card" style="height: auto;">
-					<div class="mn">
-						<div class="txt-lrg-10" style="line-height:1.2em; text-align: center; width: 60%; margin: 0 auto 60px;">Become focused, organized, and calm. Maximize your online efficiency and performance across various domains.</div>
-					</div>
-				</div><!-- end of carousel -->
+		<div>
+			<h2>Business & Work</h2>
+			<p>Explore ideas, crunch numbers, and find smarter ways to work.</p>
+		</div>
 
-				<div class="item-centered width-50">
-					<div>Join the waitlist</div>
-					<form class="search-bar-center" style="overflow:hidden; border-radius:8px;">
-						<input type="text" placeholder="Your Email" class="input" />
-						<button class="submit-btn">Submit</button>
-					</form>
-				</div>
-			</div><!-- end of box -->
+		<div>
+			<h2>Productivity & Planning</h2>
+			<p>Organize your thoughts, prioritize tasks, and make better use of your time.</p>
+		</div>
 
+		<div>
+			<h2>Everyday Utilities</h2>
+			<p>Quick answers and handy tools for life's everyday questions.</p>
+		</div>
 
-			<h2 class="margin-bottom-20">How It Works</h2>
+		<div>
+			<h2>Ideas & Creativity</h2>
+			<p>Get inspired, generate ideas, and turn thoughts into possibilities.</p>
+			<button>[Browse All Categories]</button>
+		</div>
+	<section>
 
-			<div class="flex gap-50 flex-space-between">
-				<div class="card" style="width:20%;" style="width:20%;">
-					<div class="caption">
-						<h3>Stop losing billable hours to manual tracking</h3>
-						<p>If you’re a consultant or freelancer, you already live in your calendar. But tracking time separately? That’s where things break:</p>
-					</div>
-					<ul>
-						<li>• You forget to start timers</li>
-						<li>• You guess hours later</li>
-						<li>• You lose billable time every week</li>
-					</ul>
-				</div><!-- end of card -->
+	</section>
+		<h2>Simple tools. Useful results.</h2>
+		<p>No complicated software. No steep learning curves. Just straightforward tools that help you get things done.</p>
+		<ul>
+			<li><b>Easy to use:</b> Simple interfaces without unnecessary complexity.</li>
+			<li><b>Free to explore:</b> Useful tools available without a subscription.</li>
+			<li><b>Always growing:</b> New tools and features added regularly.</li>
+		</ul>
+	<section>
 
+	</section>
+		<h2>Something missing?</h2>
+		  <p>We're always looking for new ways to make everyday tasks easier.</p>
+		  <p>Have an idea for a tool you'd like to see? Tell us what you need. Your suggestion could inspire something we build next.</p>
+		  <button>[Suggest a Tool]</button>
+	<section>
 
-				<div class="card" style="width:20%;">
-					<div class="caption">
-						<h3>Your calendar becomes your time tracker</h3>
-						<p>This tool automatically starts and stops time entries based on your scheduled events. No clicks. No switching apps. No mental overhead.</p>
-					</div>
-				</div><!-- end of card -->
-
-				<div class="card" style="width:20%;">
-					<div class="caption">
-						<div>
-							<h3>Connect your tools</h3><p>Link your calendar and time tracker in seconds</p>
-						</div>
-						<div>
-							<h3>We watch your schedule</h3><p>Events are detected just before they start</p>
-						</div>
-					</div>
-				</div><!-- end of card -->
-
-				<div class="card" style="width:20%;">
-					<div class="caption">
-						<div>
-							<h3>Time tracking starts automatically</h3><p>Event titles become time entries instantly</p>
-						</div>
-						<div>
-							<h3>Stops when your event ends</h3><p>Accurate durations, no effort required</p>
-						</div>
-						<div>
-							<h3>Review anytime</h3><p>Edit logs, adjust mappings, stay in control</p>
-						</div>
-					</div>
-				</div><!-- end of card -->
-			</div>
-
-		</div><!-- end of content-margin -->
-
-	</div><!-- end of section -->`,
+	</section>
+		<h2>Stay in the loop</h2>
+		  <p>Discover new tools, useful resources, and fresh ideas as the Everyday Toolbox grows.</p>
+		  <p>[Get Updates]</p>
+	</div>`,
 	data(){},
 	meta:{
 		title:"Connects Calendar to Time Tracker"
