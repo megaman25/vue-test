@@ -1,59 +1,935 @@
-<!DOCTYPE html>
-<!-- 
-STARTED: 2026/03/27 @
- -->
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1.0, maximum-scale=1">
-<title>Connects Calendar to Time Tracker</title>
-<script src="/js/vue-3.2.36.js"></script>
-<script src="/js/vue-router-4.2.0.js"></script>
-<script src="/js/fuse.min-3.4.5.js"></script>
-<!-- <link rel="stylesheet" type="text/css" href="/css/fonts.css"/> -->
-<link rel="stylesheet" type="text/css" href="/css/library.css"/>
-<link rel="stylesheet" type="text/css" href="/css/main.css"/>
-<script type="text/javascript">
-	if(window.location.pathname == '/'){console.log('this is the home page')};
-	window.message = "Global variable @index.html";
-	console.log(this);
-</script>
-<!-- <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-<script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-<script>
-	//ezoic
-    window.ezstandalone = window.ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
-</script> -->
-<script>
-function authHeaders() {
-	const token = localStorage.getItem('token');
-	return token ? { 'Authorization': 'Bearer ' + token } : {};
-};
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBPL695XPR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YBPL695XPR');
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Reset Tool (chatgpt → copilot/github 2026/11/11)</title>
+  <meta name="theme-color" content="#f5f6f1">
+  <meta name="description" content="Close your day with a clear plan for tomorrow.">
+  <!-- <link rel="stylesheet" href="css/styles.css"> -->
+  <!-- <script src="js/app.js" defer></script> -->
+  <style>
+	:root {
+	  color-scheme: light;
+	  --bg: #f5f6f1;
+	  --panel: #fff;
+	  --ink: #26332f;
+	  --muted: #68756f;
+	  --line: #e1e7e1;
+	  --sage: #527d69;
+	  --sage-dark: #3d6652;
+	  --sage-pale: #eaf2ec;
+	  --coral: #a44c3d;
+	  --coral-pale: #fbefec;
+	  --radius: 16px;
+	  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	}
+	* { box-sizing: border-box; }
+	body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.5; }
+	button, input, select { font: inherit; }
+	button { cursor: pointer; }
+	button:disabled { cursor: not-allowed; opacity: .48; }
+	a { color: var(--sage-dark); }
+	:focus-visible { outline: 3px solid #8bb99c; outline-offset: 3px; }
+	.skip-link { position: absolute; left: -9999px; top: 8px; z-index: 20; padding: 10px 14px; background: white; }
+	.skip-link:focus { left: 8px; }
+	.app-shell { max-width: 1120px; margin: auto; padding: 0 28px; }
+	.site-header { min-height: 78px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+	.brand { display: inline-flex; gap: 10px; align-items: center; color: var(--ink); font-weight: 750; text-decoration: none; letter-spacing: -.02em; }
+	.brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; background: var(--sage); color: white; font-size: 19px; }
+	.header-note, .site-footer { color: var(--muted); font-size: .88rem; }
+	.main-content { min-height: calc(100vh - 142px); padding: 36px 0 48px; }
+	.site-footer { min-height: 64px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); }
+	.text-button { border: 0; background: none; color: var(--muted); text-decoration: underline; padding: 6px; }
+	.text-button:hover { color: var(--ink); }
+	h1, h2, h3, p { margin-top: 0; }
+	h1 { font-size: clamp(2rem, 5vw, 3.15rem); line-height: 1.08; letter-spacing: -.045em; margin-bottom: 14px; }
+	h2 { font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.03em; margin-bottom: 8px; }
+	h3 { font-size: 1rem; margin-bottom: 12px; }
+	.lead { color: var(--muted); font-size: 1.1rem; max-width: 620px; }
+	.muted { color: var(--muted); }
+	.small { font-size: .88rem; }
+	.eyebrow { color: var(--sage-dark); text-transform: uppercase; letter-spacing: .12em; font-weight: 750; font-size: .75rem; margin-bottom: 12px; }
+	.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: 0 5px 20px rgb(34 55 42 / 3%); }
+	.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .75fr); gap: 48px; align-items: center; padding: 48px 0 30px; }
+	.hero-copy { padding: 20px 0; }
+	.hero .lead { max-width: 550px; }
+	.hero-card { background: var(--sage-pale); border: 1px solid #dbe8de; border-radius: 22px; padding: 28px; }
+	.benefits { display: grid; gap: 14px; list-style: none; padding: 0; margin: 24px 0; }
+	.benefits li { display: flex; gap: 11px; align-items: flex-start; }
+	.check-icon { color: var(--sage-dark); font-weight: 800; }
+	.button-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+	.button { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid transparent; border-radius: 10px; min-height: 44px; padding: 10px 17px; font-weight: 700; text-decoration: none; }
+	.button-primary { background: var(--sage); color: white; }
+	.button-primary:hover { background: var(--sage-dark); }
+	.button-secondary { background: white; color: var(--ink); border-color: var(--line); }
+	.button-secondary:hover { border-color: #aebdb2; background: #fbfcfa; }
+	.button-danger { color: var(--coral); background: white; border-color: #efd5d0; }
+	.button-small { min-height: 34px; padding: 6px 10px; font-size: .87rem; }
+	.step-header { margin-bottom: 24px; }
+	.step-topline { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
+	.step-label { font-size: .9rem; color: var(--muted); font-weight: 650; }
+	.progress-track { height: 7px; background: #e4e9e3; border-radius: 99px; overflow: hidden; }
+	.progress-fill { height: 100%; background: var(--sage); border-radius: inherit; transition: width .2s ease; }
+	.step-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 22px; align-items: start; }
+	.content-stack { display: grid; gap: 16px; }
+	.sidebar { display: grid; gap: 14px; position: sticky; top: 16px; }
+	.form-row { display: flex; gap: 10px; align-items: end; }
+	.field { display: grid; gap: 6px; min-width: 0; }
+	.field label, .field-label { font-size: .88rem; font-weight: 700; }
+	input, select { width: 100%; min-height: 44px; border: 1px solid #cfd8d0; border-radius: 9px; background: white; color: var(--ink); padding: 9px 11px; }
+	input[type="checkbox"] { width: 19px; height: 19px; min-height: auto; accent-color: var(--sage); }
+	.task-list { display: grid; gap: 10px; margin-top: 16px; }
+	.task-item, .task-card, .priority-item, .block-card, .history-item { border: 1px solid var(--line); border-radius: 12px; background: white; padding: 14px; }
+	.task-item { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 12px; align-items: center; }
+	.task-title { font-weight: 680; overflow-wrap: anywhere; }
+	.task-title.is-done { text-decoration: line-through; color: var(--muted); }
+	.task-meta { display: flex; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: .82rem; margin-top: 4px; }
+	.task-actions { display: flex; flex-wrap: wrap; justify-content: end; gap: 6px; }
+	.icon-button { border: 1px solid var(--line); background: white; color: var(--ink); border-radius: 8px; min-height: 34px; padding: 5px 9px; }
+	.icon-button:hover { background: var(--bg); }
+	.notice { padding: 12px 14px; background: #f4f7f3; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); }
+	.notice.error { color: #80392e; background: var(--coral-pale); border-color: #efd5d0; }
+	.notice.success { color: var(--sage-dark); background: var(--sage-pale); border-color: #d7e6db; }
+	.empty { padding: 26px 14px; text-align: center; color: var(--muted); border: 1px dashed #cfd8d0; border-radius: 12px; }
+	.workflow-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; }
+	.kanban { display: grid; grid-template-columns: repeat(4, minmax(190px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+	.kanban-column { background: #eef1ec; border-radius: 13px; padding: 12px; min-height: 180px; }
+	.column-heading { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 10px; }
+	.column-heading h3 { margin: 0; }
+	.count { display: inline-grid; place-items: center; background: white; color: var(--muted); border-radius: 99px; min-width: 26px; padding: 2px 7px; font-size: .8rem; }
+	.column-cards { display: grid; gap: 9px; min-height: 100px; }
+	.task-card { padding: 12px; }
+	.task-card .task-actions { justify-content: start; margin-top: 10px; }
+	.task-card select { margin-top: 9px; min-height: 38px; font-size: .86rem; }
+	.priority-list, .block-list { display: grid; gap: 10px; }
+	.priority-item { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+	.priority-number { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: var(--sage-dark); background: var(--sage-pale); font-weight: 800; }
+	.priority-item.selected { border-color: #afc8b6; }
+	.counter { font-weight: 750; color: var(--sage-dark); }
+	.inline-controls { display: flex; gap: 6px; }
+	.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+	.summary-stat { padding: 14px; background: #f7f8f5; border-radius: 10px; }
+	.summary-stat strong { display: block; font-size: 1.2rem; }
+	.schedule-controls { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 10px; align-items: end; }
+	.block-card { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+	.block-main { min-width: 0; }
+	.block-time { color: var(--sage-dark); font-weight: 750; font-size: .9rem; }
+	.block-edit { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; margin-top: 10px; }
+	.conflict-list { display: grid; gap: 6px; margin-top: 8px; }
+	.timeline { display: grid; gap: 9px; }
+	.timeline-entry { display: grid; grid-template-columns: 130px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+	.timeline-entry:last-child { border-bottom: 0; }
+	.timeline-time { color: var(--sage-dark); font-weight: 700; }
+	.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+	.checklist li { display: flex; gap: 9px; align-items: baseline; color: var(--muted); font-size: .88rem; }
+	.checklist .done { color: var(--sage-dark); }
+	.history-list { display: grid; gap: 8px; }
+	.history-item summary { cursor: pointer; font-weight: 700; }
+	.history-item p { margin: 10px 0 0; color: var(--muted); font-size: .88rem; }
+	.completion { max-width: 760px; margin: 18px auto; }
+	.success-mark { display: grid; place-items: center; width: 58px; height: 58px; margin-bottom: 18px; border-radius: 50%; background: var(--sage-pale); color: var(--sage-dark); font-size: 29px; font-weight: 800; }
+	.email-form { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+	.toast { position: fixed; right: 20px; bottom: 20px; z-index: 10; max-width: min(420px, calc(100vw - 40px)); padding: 12px 16px; border-radius: 10px; background: var(--ink); color: white; box-shadow: 0 8px 26px rgb(0 0 0 / 15%); }
+	@media (max-width: 820px) {
+	  .hero { grid-template-columns: 1fr; gap: 12px; padding-top: 24px; }
+	  .step-layout { grid-template-columns: 1fr; }
+	  .sidebar { position: static; grid-template-columns: repeat(2, minmax(0,1fr)); }
+	  .schedule-controls { grid-template-columns: repeat(2, minmax(0,1fr)); }
+	  .schedule-controls .field:first-child { grid-column: 1 / -1; }
+	  .kanban { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
+	}
+	@media (max-width: 560px) {
+	  .app-shell { padding: 0 16px; }
+	  .site-header { min-height: 64px; }
+	  .header-note { display: none; }
+	  .main-content { padding: 22px 0 32px; }
+	  .panel { padding: 18px; }
+	  .hero-card { padding: 21px; }
+	  .form-row { align-items: stretch; flex-direction: column; }
+	  .form-row .button { width: 100%; }
+	  .task-item { grid-template-columns: auto minmax(0,1fr); }
+	  .task-actions { grid-column: 2; justify-content: start; }
+	  .sidebar { grid-template-columns: 1fr; }
+	  .workflow-nav { flex-direction: column-reverse; }
+	  .workflow-nav .button { width: 100%; }
+	  .summary-grid { grid-template-columns: 1fr; }
+	  .block-card { grid-template-columns: 1fr; }
+	  .block-edit { grid-template-columns: 1fr 1fr; }
+	  .block-edit .button { grid-column: 1 / -1; }
+	  .timeline-entry { grid-template-columns: 1fr; gap: 2px; }
+	  .email-form { grid-template-columns: 1fr; }
+	  .email-form .button { width: 100%; }
+	  .site-footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 5px; padding: 12px 0; }
+	}
+	@media print {
+	  body { background: white; color: #111; }
+	  .app-shell { max-width: none; padding: 0; }
+	  .site-header, .site-footer, .workflow-nav, .no-print, .button, .text-button { display: none !important; }
+	  .main-content { min-height: 0; padding: 0; }
+	  .panel, .task-item, .block-card { box-shadow: none; break-inside: avoid; border-color: #bbb; }
+	  .completion { max-width: none; margin: 0; }
+	  .step-header { display: none; }
+	  .timeline-entry { break-inside: avoid; }
+	}
+  </style>
 </head>
-
 <body>
-	<div id="wrapper">
-	</div><!-- end of wrapper -->
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="#" data-action="home" aria-label="The Daily Reset home">
+        <span class="brand-mark" aria-hidden="true">↗</span>
+        <span>The Daily Reset</span>
+      </a>
+      <span class="header-note">A five-minute reset for a calmer tomorrow</span>
+    </header>
+    <main id="main" class="main-content" tabindex="-1">
+      <div id="app" aria-live="polite"></div>
+    </main>
+    <footer class="site-footer">
+      <span>Your plan stays on this device.</span>
+      <button class="text-button" type="button" data-action="clear-data">Clear saved data</button>
+    </footer>
+  </div>
+<script>
+	(() => {
+	  "use strict";
 
-	<script type="module" src="/App.js"></script>
-	<!-- <script async src="https://www.viator.com/orion/partner/widget.js"></script>
-	<script async src="https://partners.vtrcdn.com/static/scripts/banners/banners.js"></script>
-	<script type="text/javascript" src="//cdn0.agoda.net/images/sherpa/js/sherpa_init1_08.min.js"></script><script type="text/javascript">
-	var stg = new Object(); stg.crt="4898135834280";stg.version="1.04"; stg.id=stg.name="adgshp1104334795"; stg.width="900px"; stg.height="266px";stg.ReferenceKey="c0fW3EXq4SP/EidtnvquYw=="; stg.Layout="Oneline"; stg.Language="en-us";stg.Cid="1827487"; stg.DestinationName="";stg.OverideConf=false; new AgdSherpa(stg).initialize();
-	</script> -->
+	  const STORAGE_KEY = "daily-reset-tool-v1";
+	  const STEP_NAMES = ["Welcome", "Task Inbox", "Organize Tasks", "Top Three", "Plan Tomorrow", "Review", "Complete"];
+	  const STATUSES = ["todo", "reschedule", "later", "completed"];
+	  const STATUS_LABELS = { todo: "To Do", reschedule: "Reschedule", later: "Later", completed: "Completed" };
+	  const DURATIONS = [15, 30, 45, 60, 90, 120];
+	  const app = document.querySelector("#app");
 
-				<script async src="https://www.viator.com/orion/partner/widget.js"></script>
+	  const defaultState = () => ({
+	    step: 1,
+	    tasks: [],
+	    priorities: [],
+	    blocks: [],
+	    history: [],
+	    settings: { workStart: "09:00", workEnd: "17:00", breakDuration: 15 },
+	    confirmed: false
+	  });
+
+	  function loadState() {
+	    try {
+	      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+	      if (!saved || typeof saved !== "object") return defaultState();
+	      return {
+	        ...defaultState(),
+	        ...saved,
+	        tasks: Array.isArray(saved.tasks) ? saved.tasks : [],
+	        priorities: Array.isArray(saved.priorities) ? saved.priorities : [],
+	        blocks: Array.isArray(saved.blocks) ? saved.blocks : [],
+	        history: Array.isArray(saved.history) ? saved.history : [],
+	        settings: { ...defaultState().settings, ...(saved.settings || {}) }
+	      };
+	    } catch {
+	      return defaultState();
+	    }
+	  }
+
+	  let state = loadState();
+	  let toastTimer;
+
+	  function save() {
+	    try {
+	      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+	    } catch {
+	      notify("Couldn't save changes in this browser. Check available storage space.", true);
+	    }
+	  }
+
+	  function escapeHtml(value = "") {
+	    return String(value).replace(/[&<>"']/g, char => ({
+	      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+	    })[char]);
+	  }
+
+	  function uid() {
+	    return crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+	  }
+
+	  function todayLocal() {
+	    const d = new Date();
+	    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+	  }
+
+	  function tomorrowISO() {
+	    const d = todayLocal();
+	    d.setDate(d.getDate() + 1);
+	    return dateISO(d);
+	  }
+
+	  function dateISO(date) {
+	    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+	  }
+
+	  function formatDate(value, options = { weekday: "long", month: "long", day: "numeric", year: "numeric" }) {
+	    if (!value) return "";
+	    const date = new Date(`${value}T12:00:00`);
+	    return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString(undefined, options);
+	  }
+
+	  function addMinutes(time, duration) {
+	    const [hours, minutes] = String(time).split(":").map(Number);
+	    if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return "";
+	    const total = hours * 60 + minutes + Number(duration);
+	    if (total < 0 || total >= 24 * 60) return "";
+	    return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
+	  }
+
+	  function minutes(time) {
+	    if (!/^\d{2}:\d{2}$/.test(String(time))) return NaN;
+	    const [h, m] = time.split(":").map(Number);
+	    return h < 24 && m < 60 ? h * 60 + m : NaN;
+	  }
+
+	  function displayTime(time) {
+	    if (!time) return "";
+	    const [h, m] = time.split(":").map(Number);
+	    const d = new Date();
+	    d.setHours(h, m, 0, 0);
+	    return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+	  }
+
+	  function notify(message, error = false) {
+	    let toast = document.querySelector(".toast");
+	    if (!toast) {
+	      toast = document.createElement("div");
+	      toast.className = "toast";
+	      toast.setAttribute("role", "status");
+	      toast.setAttribute("aria-live", "polite");
+	      document.body.append(toast);
+	    }
+	    toast.textContent = message;
+	    toast.style.background = error ? "#80392e" : "";
+	    clearTimeout(toastTimer);
+	    toastTimer = setTimeout(() => toast.remove(), 3500);
+	  }
+
+	  function activeTasks() {
+	    return state.tasks.filter(task => task.status !== "completed");
+	  }
+
+	  function selectedTasks() {
+	    return state.priorities.map(id => state.tasks.find(task => task.id === id)).filter(Boolean);
+	  }
+
+	  function taskById(id) {
+	    return state.tasks.find(task => task.id === id);
+	  }
+
+	  function stepHeader() {
+	    const step = Math.min(Math.max(state.step, 1), 7);
+	    return `<div class="step-header">
+	      <div class="step-topline"><span class="step-label">Step ${step} of 7 · ${STEP_NAMES[step - 1]}</span>
+	      <span class="step-label">${Math.round(step / 7 * 100)}% complete</span></div>
+	      <div class="progress-track" role="progressbar" aria-label="Planning progress" aria-valuemin="1" aria-valuemax="7" aria-valuenow="${step}">
+	        <div class="progress-fill" style="width:${step / 7 * 100}%"></div>
+	      </div>
+	    </div>`;
+	  }
+
+	  function checklist() {
+	    const checks = [
+	      ["Review unfinished tasks", state.step >= 2 && state.tasks.length > 0],
+	      ["Mark completed or move tasks", state.step >= 3],
+	      ["Choose three priorities", state.priorities.length === 3],
+	      ["Add time blocks", state.blocks.length > 0],
+	      ["Review tomorrow's schedule", state.step >= 6],
+	      ["Confirm the plan", state.confirmed]
+	    ];
+	    return `<section class="panel"><h3>Your reset checklist</h3><ul class="checklist">
+	      ${checks.map(([label, done]) => `<li class="${done ? "done" : ""}"><span aria-hidden="true">${done ? "✓" : "○"}</span>${escapeHtml(label)}</li>`).join("")}
+	    </ul></section>`;
+	  }
+
+	  function historyPanel() {
+	    if (!state.history.length) return "";
+	    return `<section class="panel"><h3>Previous plans</h3><div class="history-list">
+	      ${state.history.slice(0, 5).map(plan => `<details class="history-item">
+	        <summary>${escapeHtml(formatDate(plan.planDate))}</summary>
+	        <p><strong>Priorities:</strong> ${escapeHtml((plan.priorityTitles || []).join(" · ") || "—")}</p>
+	        <p>${Number(plan.completedTasks) || 0} completed tasks · ${Number(plan.blockCount) || 0} scheduled activities</p>
+	      </details>`).join("")}
+	    </div></section>`;
+	  }
+
+	  function nav(back, next, nextDisabled = false, nextLabel = "Continue") {
+	    return `<nav class="workflow-nav" aria-label="Workflow navigation">
+	      <button class="button button-secondary" type="button" data-action="back"${back ? "" : " disabled"}>Back</button>
+	      <button class="button button-primary" type="button" data-action="continue"${nextDisabled ? " disabled" : ""}>${escapeHtml(nextLabel)}</button>
+	    </nav>`;
+	  }
+
+	  function render() {
+	    save();
+	    const view = {
+	      1: renderWelcome,
+	      2: renderInbox,
+	      3: renderKanban,
+	      4: renderPriorities,
+	      5: renderScheduler,
+	      6: renderReview,
+	      7: renderComplete
+	    }[state.step] || renderWelcome;
+	    app.innerHTML = view();
+	  }
+
+	  function renderWelcome() {
+	    return `<section class="hero">
+	      <div class="hero-copy">
+	        <p class="eyebrow">A little space to reset</p>
+	        <h1>Close your day with a clear plan for tomorrow.</h1>
+	        <p class="lead">Turn unfinished tasks into a calm, realistic plan in about five minutes. No account, no complicated setup—just a better next day.</p>
+	        <div class="button-row">
+	          <button type="button" class="button button-primary" data-action="start">Start My Daily Reset</button>
+	          <a class="button button-secondary" href="#how-it-works">How It Works</a>
+	        </div>
+	        <p class="small muted" style="margin-top:12px">Your tasks and plans are saved only in this browser.</p>
+	      </div>
+	      <aside class="hero-card" id="how-it-works">
+	        <p class="eyebrow">Your five-minute reset</p>
+	        <ul class="benefits">
+	          <li><span class="check-icon">✓</span><span>Gather and organize unfinished tasks.</span></li>
+	          <li><span class="check-icon">✓</span><span>Choose tomorrow's three priorities.</span></li>
+	          <li><span class="check-icon">✓</span><span>Make a realistic schedule with room to breathe.</span></li>
+	        </ul>
+	        <p class="muted small">A few thoughtful choices now can make tomorrow feel much lighter.</p>
+	      </aside>
+	    </section>
+	    ${historyPanel()}`;
+	  }
+
+	  function renderInbox() {
+	    const tasks = state.tasks;
+	    const undone = activeTasks().length;
+	    return `${stepHeader()}<div class="step-layout">
+	      <section class="content-stack">
+	        <div><p class="eyebrow">First, get it out of your head</p><h2>Your Task Inbox</h2><p class="muted">What still needs your attention? Add unfinished tasks, then decide what to do with them.</p></div>
+	        <section class="panel">
+	          <form id="add-task-form" class="form-row">
+	            <div class="field" style="flex:1"><label for="task-title">Task</label><input id="task-title" name="title" maxlength="160" placeholder="e.g. Send the project proposal" required></div>
+	            <div class="field"><label for="task-due">Due date (optional)</label><input id="task-due" name="dueDate" type="date"></div>
+	            <button class="button button-primary" type="submit">Add task</button>
+	          </form>
+	          <div class="step-topline" style="margin:22px 0 0"><h3 style="margin:0">Your tasks</h3><span class="counter">${undone} unfinished</span></div>
+	          <div class="task-list">${tasks.length ? tasks.map(task => `
+	            <article class="task-item">
+	              <input type="checkbox" data-action="toggle-complete" data-id="${escapeHtml(task.id)}" ${task.status === "completed" ? "checked" : ""} aria-label="Mark ${escapeHtml(task.title)} complete">
+	              <div><div class="task-title ${task.status === "completed" ? "is-done" : ""}">${escapeHtml(task.title)}</div>
+	                <div class="task-meta"><span>${escapeHtml(STATUS_LABELS[task.status] || "To Do")}</span>${task.dueDate ? `<span>Due ${escapeHtml(formatDate(task.dueDate, { month: "short", day: "numeric" }))}</span>` : ""}${task.estimatedDuration ? `<span>${Number(task.estimatedDuration)} min</span>` : ""}</div></div>
+	              <div class="task-actions"><button type="button" class="icon-button" data-action="edit-task" data-id="${escapeHtml(task.id)}">Edit</button><button type="button" class="icon-button" data-action="delete-task" data-id="${escapeHtml(task.id)}">Delete</button></div>
+	            </article>`).join("") : `<div class="empty">Your inbox is clear. Add a task to get started.</div>`}
+	          </div>
+	        </section>
+	        ${nav(false, true)}
+	      </section>
+	      <aside class="sidebar">
+	        <section class="panel"><h3>Keep it simple</h3><p class="small muted">Capture tasks without sorting them yet. You can decide what deserves attention on the next step.</p></section>
+	        ${checklist()}
+	      </aside>
+	    </div>`;
+	  }
+
+	  function renderKanban() {
+	    return `${stepHeader()}<div class="step-layout">
+	      <section class="content-stack">
+	        <div><p class="eyebrow">Make a choice for each task</p><h2>Organize your tasks</h2><p class="muted">Move tasks into a manageable plan. Completed tasks stay out of tomorrow's priority list.</p></div>
+	        <section class="kanban" aria-label="Task board">
+	          ${STATUSES.map(status => {
+	            const list = state.tasks.filter(task => task.status === status);
+	            return `<div class="kanban-column" data-status="${status}">
+	              <div class="column-heading"><h3>${STATUS_LABELS[status]}</h3><span class="count">${list.length}</span></div>
+	              <div class="column-cards">${list.length ? list.map(task => `
+	                <article class="task-card">
+	                  <div class="task-title ${status === "completed" ? "is-done" : ""}">${escapeHtml(task.title)}</div>
+	                  <div class="task-meta">${task.dueDate ? `<span>Due ${escapeHtml(formatDate(task.dueDate, { month: "short", day: "numeric" }))}</span>` : ""}${task.estimatedDuration ? `<span>${Number(task.estimatedDuration)} min</span>` : ""}</div>
+	                  ${status !== "completed" ? `<label class="field small" style="margin-top:8px"><span class="field-label">Move to</span><select data-action="move-task" data-id="${escapeHtml(task.id)}">${STATUSES.filter(s => s !== status).map(s => `<option value="${s}">${STATUS_LABELS[s]}</option>`).join("")}</select></label>` : ""}
+	                  <div class="task-actions">
+	                    ${status !== "completed" ? `<button type="button" class="icon-button" data-action="complete-task" data-id="${escapeHtml(task.id)}">Complete</button>` : ""}
+	                    <button type="button" class="icon-button" data-action="edit-task" data-id="${escapeHtml(task.id)}">Edit</button>
+	                    <button type="button" class="icon-button" data-action="delete-task" data-id="${escapeHtml(task.id)}">Delete</button>
+	                  </div>
+	                  ${status === "reschedule" ? `<label class="field small" style="margin-top:8px"><span class="field-label">New due date</span><input type="date" data-action="reschedule-date" data-id="${escapeHtml(task.id)}" value="${escapeHtml(task.dueDate || "")}"></label>` : ""}
+	                </article>`).join("") : `<div class="empty small">No tasks here</div>`}
+	              </div></div>`;
+	          }).join("")}
+	        </section>
+	        ${nav(true, true)}
+	      </section>
+	      <aside class="sidebar">
+	        <section class="panel"><h3>A gentle reminder</h3><p class="small muted">“Later” is a valid choice. Tomorrow only needs to hold what matters most.</p></section>
+	        ${checklist()}
+	      </aside>
+	    </div>`;
+	  }
+
+	  function renderPriorities() {
+	    const eligible = activeTasks();
+	    const selected = new Set(state.priorities);
+	    return `${stepHeader()}<div class="step-layout">
+	      <section class="content-stack">
+	        <div><p class="eyebrow">Protect your focus</p><h2>Choose your top three</h2><p class="muted">What are the three most important things to accomplish tomorrow? Choose exactly three.</p></div>
+	        <section class="panel">
+	          <div class="step-topline"><h3 style="margin:0">Available tasks</h3><span class="counter">${state.priorities.length}/3 selected</span></div>
+	          <div class="task-list">${eligible.length ? eligible.map(task => {
+	            const checked = selected.has(task.id);
+	            return `<label class="priority-item ${checked ? "selected" : ""}">
+	              <input type="checkbox" data-action="priority-toggle" data-id="${escapeHtml(task.id)}" ${checked ? "checked" : ""} ${!checked && state.priorities.length >= 3 ? "disabled" : ""}>
+	              <span><span class="task-title">${escapeHtml(task.title)}</span><span class="task-meta">${escapeHtml(STATUS_LABELS[task.status] || "To Do")}${task.dueDate ? ` · Due ${escapeHtml(formatDate(task.dueDate, { month: "short", day: "numeric" }))}` : ""}</span></span>
+	              <span class="small muted">${checked ? "Selected" : "Choose"}</span>
+	            </label>`;
+	          }).join("") : `<div class="empty">No unfinished tasks yet. Add a task below.</div>`}</div>
+	          <form id="quick-task-form" class="form-row" style="margin-top:16px">
+	            <div class="field" style="flex:1"><label for="quick-task">Add another task</label><input id="quick-task" name="title" maxlength="160" placeholder="A task for tomorrow"></div>
+	            <button class="button button-secondary" type="submit">Add task</button>
+	          </form>
+	          <div style="margin-top:22px"><h3>Priority order</h3>
+	            ${state.priorities.length ? `<ol class="priority-list">${state.priorities.map((id, i) => {
+	              const task = taskById(id);
+	              return task ? `<li class="priority-item"><span class="priority-number">${i + 1}</span><span class="task-title">${escapeHtml(task.title)}</span><span class="inline-controls"><button class="icon-button" type="button" data-action="priority-up" data-index="${i}" aria-label="Move ${escapeHtml(task.title)} up" ${i === 0 ? "disabled" : ""}>↑</button><button class="icon-button" type="button" data-action="priority-down" data-index="${i}" aria-label="Move ${escapeHtml(task.title)} down" ${i === state.priorities.length - 1 ? "disabled" : ""}>↓</button></span></li>` : "";
+	            }).join("")}</ol>` : `<p class="small muted">Your chosen tasks will appear here in order.</p>`}
+	          </div>
+	        </section>
+	        ${nav(true, true, state.priorities.length !== 3, "Plan Tomorrow")}
+	      </section>
+	      <aside class="sidebar">
+	        <section class="panel"><h3>Three is enough</h3><p class="small muted">A short list makes it easier to focus and leaves room for the unexpected.</p></section>
+	        ${checklist()}
+	      </aside>
+	    </div>`;
+	  }
+
+	  function conflicts() {
+	    const valid = state.blocks.filter(block => Number.isFinite(minutes(block.startTime)) && Number(block.duration) > 0);
+	    const sorted = [...valid].sort((a, b) => minutes(a.startTime) - minutes(b.startTime));
+	    const pairs = [];
+	    for (let i = 0; i < sorted.length; i++) {
+	      const end = minutes(sorted[i].startTime) + Number(sorted[i].duration);
+	      for (let j = i + 1; j < sorted.length && minutes(sorted[j].startTime) < end; j++) {
+	        pairs.push([sorted[i], sorted[j]]);
+	      }
+	    }
+	    return pairs;
+	  }
+
+	  function blockCard(block) {
+	    const end = addMinutes(block.startTime, block.duration);
+	    const task = block.taskId ? taskById(block.taskId) : null;
+	    return `<article class="block-card">
+	      <div class="block-main"><div class="block-time">${escapeHtml(displayTime(block.startTime))}–${escapeHtml(displayTime(end))} · ${Number(block.duration)} min</div>
+	        <div class="task-title">${escapeHtml(block.title)}</div><div class="task-meta">${escapeHtml(block.type || "Activity")}${task ? ` · Priority: ${escapeHtml(task.title)}` : ""}</div>
+	        <div class="block-edit">
+	          <label class="field small"><span class="field-label">Start time</span><input type="time" data-action="block-time" data-id="${escapeHtml(block.id)}" value="${escapeHtml(block.startTime)}"></label>
+	          <label class="field small"><span class="field-label">Duration</span><select data-action="block-duration" data-id="${escapeHtml(block.id)}">${DURATIONS.map(d => `<option value="${d}" ${Number(block.duration) === d ? "selected" : ""}>${d} min</option>`).join("")}</select></label>
+	          <button type="button" class="button button-danger button-small" data-action="delete-block" data-id="${escapeHtml(block.id)}">Remove</button>
+	        </div>
+	      </div>
+	      ${block.taskId ? `<span class="small muted">Priority block</span>` : ""}
+	    </article>`;
+	  }
+
+	  function renderScheduler() {
+	    const clashes = conflicts();
+	    const scheduled = new Set(state.blocks.map(b => b.taskId).filter(Boolean));
+	    const missing = selectedTasks().filter(task => !scheduled.has(task.id));
+	    const sorted = [...state.blocks].sort((a, b) => minutes(a.startTime) - minutes(b.startTime));
+	    return `${stepHeader()}<div class="step-layout">
+	      <section class="content-stack">
+	        <div><p class="eyebrow">Make room for what matters</p><h2>Plan tomorrow</h2><p class="muted">${escapeHtml(formatDate(tomorrowISO()))}. Schedule your priorities, add breaks, and leave some open space.</p></div>
+	        <section class="panel">
+	          <div class="summary-grid">
+	            <label class="field summary-stat"><span class="field-label">Workday starts</span><input type="time" data-action="setting" data-key="workStart" value="${escapeHtml(state.settings.workStart)}"></label>
+	            <label class="field summary-stat"><span class="field-label">Workday ends</span><input type="time" data-action="setting" data-key="workEnd" value="${escapeHtml(state.settings.workEnd)}"></label>
+	            <div class="summary-stat"><span class="muted small">Priorities scheduled</span><strong>${selectedTasks().length - missing.length}/3</strong></div>
+	          </div>
+	          <form id="add-block-form" class="schedule-controls" style="margin-top:18px">
+	            <div class="field"><label for="block-title">Activity</label><select id="block-title" name="taskId">
+	              <option value="">General activity / break</option>
+	              ${selectedTasks().map(task => `<option value="${escapeHtml(task.id)}">${escapeHtml(task.title)} (priority)</option>`).join("")}
+	            </select></div>
+	            <div class="field"><label for="block-start">Start</label><input id="block-start" name="startTime" type="time" value="${escapeHtml(state.settings.workStart)}" required></div>
+	            <div class="field"><label for="block-duration">Duration</label><select id="block-duration" name="duration">${DURATIONS.map(d => `<option value="${d}" ${d === 60 ? "selected" : ""}>${d} min</option>`).join("")}</select></div>
+	            <div class="field"><label for="block-type">Type</label><select id="block-type" name="type"><option>General task</option><option>Focus session</option><option>Break</option><option>Lunch</option><option>Personal activity</option></select></div>
+	            <button class="button button-primary" type="submit">Add block</button>
+	          </form>
+	          <div class="button-row no-print" style="margin-top:12px"><button class="button button-secondary button-small" type="button" data-action="add-break">Add a break</button></div>
+	        </section>
+	        ${clashes.length ? `<div class="notice error" role="alert"><strong>Schedule conflicts found.</strong><div class="conflict-list">${clashes.map(([a,b]) => `<span>“${escapeHtml(a.title)}” overlaps with “${escapeHtml(b.title)}”. Adjust a start time or duration.</span>`).join("")}</div></div>` : `<div class="notice success">No overlapping time blocks.</div>`}
+	        ${missing.length ? `<div class="notice">Add a time block for each priority before continuing. Missing: ${missing.map(t => escapeHtml(t.title)).join(", ")}</div>` : ""}
+	        <section class="panel"><div class="step-topline"><h3 style="margin:0">Tomorrow's timeline</h3><span class="small muted">${state.blocks.length} activities</span></div>
+	          <div class="block-list">${sorted.length ? sorted.map(blockCard).join("") : `<div class="empty">Your schedule is empty. Add a priority or activity above.</div>`}</div>
+	        </section>
+	        ${nav(true, true, clashes.length > 0 || missing.length > 0, "Review My Schedule")}
+	      </section>
+	      <aside class="sidebar">
+	        <section class="panel"><h3>Leave breathing room</h3><p class="small muted">You don't need to fill every minute. A short break and a little flexible time can make the plan more realistic.</p></section>
+	        ${checklist()}
+	      </aside>
+	    </div>`;
+	  }
+
+	  function scheduleTimeline() {
+	    const sorted = [...state.blocks].sort((a, b) => minutes(a.startTime) - minutes(b.startTime));
+	    return sorted.length ? `<div class="timeline">${sorted.map(block => `<div class="timeline-entry">
+	      <div class="timeline-time">${escapeHtml(displayTime(block.startTime))}–${escapeHtml(displayTime(addMinutes(block.startTime, block.duration)))}</div>
+	      <div><strong>${escapeHtml(block.title)}</strong><div class="small muted">${Number(block.duration)} min · ${escapeHtml(block.type || "Activity")}</div></div>
+	    </div>`).join("")}</div>` : `<div class="empty">No activities scheduled.</div>`;
+	  }
+
+	  function renderReview() {
+	    const clashes = conflicts();
+	    const selected = selectedTasks();
+	    const scheduled = new Set(state.blocks.map(b => b.taskId).filter(Boolean));
+	    const unscheduled = activeTasks().filter(task => !scheduled.has(task.id));
+	    const canConfirm = selected.length === 3 && !clashes.length && state.blocks.length > 0;
+	    return `${stepHeader()}<div class="completion">
+	      <div><p class="eyebrow">One last look</p><h2>Review tomorrow's plan</h2><p class="muted">${escapeHtml(formatDate(tomorrowISO()))}. Make sure this feels manageable before you confirm.</p></div>
+	      ${clashes.length ? `<div class="notice error" role="alert">There are schedule conflicts. Go back to Plan Tomorrow and resolve them before confirming.</div>` : ""}
+	      <section class="panel" style="margin-top:16px"><h3>Your three priorities</h3>
+	        <ol>${selected.map(task => `<li>${escapeHtml(task.title)}</li>`).join("")}</ol>
+	      </section>
+	      <section class="panel" style="margin-top:14px"><h3>Schedule</h3>${scheduleTimeline()}</section>
+	      <section class="panel" style="margin-top:14px"><h3>Not scheduled</h3>
+	        <p class="small muted">${unscheduled.length ? unscheduled.map(t => escapeHtml(t.title)).join(" · ") : "All unfinished tasks have a time block."}</p>
+	      </section>
+	      <section class="panel" style="margin-top:14px">
+	        <label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" data-action="review-check" ${state.reviewed ? "checked" : ""}>
+	          <span>I've reviewed my schedule and I'm happy with it.</span></label>
+	        <div class="workflow-nav"><button class="button button-secondary" type="button" data-action="back">Back to schedule</button>
+	          <button class="button button-primary" type="button" data-action="confirm-plan" ${!canConfirm || !state.reviewed ? "disabled" : ""}>Confirm My Plan</button></div>
+	      </section>
+	    </div>`;
+	  }
+
+	  function renderComplete() {
+	    const plan = state.history[0];
+	    const priorityTitles = plan?.priorityTitles || selectedTasks().map(t => t.title);
+	    return `${stepHeader()}<section class="completion">
+	      <div class="success-mark" aria-hidden="true">✓</div>
+	      <p class="eyebrow">Reset complete</p><h1>Your Daily Reset Is Complete!</h1>
+	      <p class="lead">You've turned your unfinished tasks into a plan for tomorrow.</p>
+	      <section class="panel" style="margin-top:22px">
+	        <p class="eyebrow">${escapeHtml(formatDate(plan?.planDate || tomorrowISO()))}</p>
+	        <h2>Tomorrow's priorities</h2>
+	        <ol>${priorityTitles.map(title => `<li>${escapeHtml(title)}</li>`).join("")}</ol>
+	        <h3 style="margin-top:24px">Your schedule</h3>
+	        ${scheduleTimeline()}
+	        <div class="button-row no-print" style="margin-top:20px">
+	          <button class="button button-primary" type="button" data-action="download">Download My Plan</button>
+	          <button class="button button-secondary" type="button" data-action="print">Print My Plan</button>
+	          <button class="button button-secondary" type="button" data-action="new-reset">Start a New Reset</button>
+	        </div>
+	      </section>
+	      <section class="panel no-print" style="margin-top:14px">
+	        <h3>Get your daily planning reminder</h3>
+	        <p class="small muted">Receive a simple reminder to close your day with a clear plan for tomorrow.</p>
+	        <form id="email-form" class="email-form">
+	          <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+	          <button class="button button-secondary" type="submit">Request a reminder</button>
+	        </form>
+	        <p class="small muted" id="email-feedback" aria-live="polite" style="margin:10px 0 0">Privacy: your email is not sent or stored. A mailing-list service must be connected to enable subscriptions.</p>
+	      </section>
+	      ${historyPanel()}
+	    </section>`;
+	  }
+
+	  function createTask(title, dueDate = "") {
+	    const cleaned = title.trim();
+	    if (!cleaned) return false;
+	    const duplicate = activeTasks().some(task => task.title.toLowerCase() === cleaned.toLowerCase());
+	    if (duplicate) {
+	      notify("That task is already in your unfinished list.", true);
+	      return false;
+	    }
+	    state.tasks.push({
+	      id: uid(), title: cleaned, description: "", createdAt: new Date().toISOString(),
+	      dueDate: dueDate || "", status: "todo", category: "", priority: 0, estimatedDuration: 0
+	    });
+	    save();
+	    return true;
+	  }
+
+	  function editTask(id) {
+	    const task = taskById(id);
+	    if (!task) return;
+	    const title = prompt("Update task title:", task.title);
+	    if (title === null) return;
+	    if (!title.trim()) return notify("A task needs a title.", true);
+	    task.title = title.trim();
+	    save();
+	    render();
+	  }
+
+	  function deleteTask(id) {
+	    const task = taskById(id);
+	    if (!task || !confirm(`Delete “${task.title}”? This cannot be undone.`)) return;
+	    state.tasks = state.tasks.filter(item => item.id !== id);
+	    state.priorities = state.priorities.filter(taskId => taskId !== id);
+	    state.blocks = state.blocks.filter(block => block.taskId !== id);
+	    save();
+	    render();
+	  }
+
+	  function setStatus(id, status) {
+	    const task = taskById(id);
+	    if (!task || !STATUSES.includes(status)) return;
+	    task.status = status;
+	    if (status === "completed") {
+	      state.priorities = state.priorities.filter(taskId => taskId !== id);
+	      state.blocks = state.blocks.filter(block => block.taskId !== id);
+	    }
+	    save();
+	    render();
+	  }
+
+	  function togglePriority(id, checked) {
+	    const task = taskById(id);
+	    if (!task || task.status === "completed") return;
+	    if (checked && !state.priorities.includes(id)) {
+	      if (state.priorities.length >= 3) return notify("Choose no more than three priorities.", true);
+	      state.priorities.push(id);
+	    } else if (!checked) {
+	      state.priorities = state.priorities.filter(item => item !== id);
+	    }
+	    save();
+	    render();
+	  }
+
+	  function movePriority(index, amount) {
+	    const target = index + amount;
+	    if (target < 0 || target >= state.priorities.length) return;
+	    [state.priorities[index], state.priorities[target]] = [state.priorities[target], state.priorities[index]];
+	    save();
+	    render();
+	  }
+
+	  function ensurePriorityBlocks() {
+	    let start = state.settings.workStart || "09:00";
+	    for (const task of selectedTasks()) {
+	      if (state.blocks.some(block => block.taskId === task.id)) continue;
+	      const duration = DURATIONS.includes(Number(task.estimatedDuration)) ? Number(task.estimatedDuration) : 60;
+	      const title = task.title;
+	      state.blocks.push({ id: uid(), taskId: task.id, title, startTime: start, duration, type: "Priority task" });
+	      start = addMinutes(start, duration + 15) || state.settings.workStart;
+	    }
+	    save();
+	  }
+
+	  function createBlock(form) {
+	    const data = new FormData(form);
+	    const taskId = String(data.get("taskId") || "");
+	    const startTime = String(data.get("startTime") || "");
+	    const duration = Number(data.get("duration"));
+	    const type = String(data.get("type") || "General task");
+	    const task = taskId ? taskById(taskId) : null;
+	    if (!Number.isFinite(minutes(startTime)) || !DURATIONS.includes(duration)) {
+	      notify("Choose a valid start time and duration.", true);
+	      return;
+	    }
+	    if (task && state.blocks.some(block => block.taskId === taskId)) {
+	      notify("That priority already has a time block. Edit its existing block instead.", true);
+	      return;
+	    }
+	    const title = task ? task.title : (type === "Break" ? "Break" : type === "Lunch" ? "Lunch" : type);
+	    state.blocks.push({ id: uid(), taskId: task?.id || "", title, startTime, duration, type });
+	    save();
+	    render();
+	  }
+
+	  function addBreak() {
+	    const end = state.settings.workEnd || "17:00";
+	    const last = [...state.blocks].sort((a, b) => minutes(b.startTime) - minutes(a.startTime))[0];
+	    const startTime = last ? addMinutes(last.startTime, Number(last.duration) + 15) : state.settings.workStart;
+	    if (!startTime || minutes(startTime) >= minutes(end)) {
+	      return notify("No room for a break after your last block. Try another start time.", true);
+	    }
+	    state.blocks.push({ id: uid(), taskId: "", title: "Short break", startTime, duration: Number(state.settings.breakDuration) || 15, type: "Break" });
+	    save();
+	    render();
+	  }
+
+	  function downloadPlan() {
+	    const plan = state.history[0];
+	    const lines = [
+	      `The Daily Reset — ${formatDate(plan?.planDate || tomorrowISO())}`,
+	      "",
+	      "TOP THREE",
+	      ...selectedTasks().map((task, i) => `${i + 1}. ${task.title}`),
+	      "",
+	      "SCHEDULE",
+	      ...[...state.blocks].sort((a, b) => minutes(a.startTime) - minutes(b.startTime))
+	        .map(block => `${displayTime(block.startTime)}–${displayTime(addMinutes(block.startTime, block.duration))}  ${block.title} (${block.duration} min)`),
+	      "",
+	      "Created with The Daily Reset."
+	    ];
+	    const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+	    const url = URL.createObjectURL(blob);
+	    const link = document.createElement("a");
+	    link.href = url;
+	    link.download = `daily-reset-${plan?.planDate || tomorrowISO()}.txt`;
+	    link.click();
+	    URL.revokeObjectURL(url);
+	  }
+
+	  function confirmPlan() {
+	    if (state.priorities.length !== 3) return notify("Choose exactly three priorities first.", true);
+	    if (conflicts().length) return notify("Resolve schedule conflicts before confirming.", true);
+	    if (!state.reviewed) return notify("Please confirm that you've reviewed the schedule.", true);
+	    const planDate = tomorrowISO();
+	    const snapshot = {
+	      id: uid(), planDate, priorityTitles: selectedTasks().map(task => task.title),
+	      timeBlocks: state.blocks.map(block => ({ ...block })),
+	      completedAt: new Date().toISOString(),
+	      completedTasks: state.tasks.filter(task => task.status === "completed").length,
+	      blockCount: state.blocks.length, isConfirmed: true
+	    };
+	    state.history = [snapshot, ...state.history.filter(item => item.planDate !== planDate)].slice(0, 30);
+	    state.confirmed = true;
+	    state.step = 7;
+	    save();
+	    render();
+	  }
+
+	  function goNext() {
+	    if (state.step === 2) state.step = 3;
+	    else if (state.step === 3) {
+	      if (activeTasks().length < 3) {
+	        notify("Add or restore at least three unfinished tasks before choosing priorities.", true);
+	        return;
+	      }
+	      state.step = 4;
+	    } else if (state.step === 4) {
+	      if (state.priorities.length !== 3) return notify("Choose exactly three priorities to continue.", true);
+	      ensurePriorityBlocks();
+	      state.step = 5;
+	    } else if (state.step === 5) {
+	      const missing = selectedTasks().filter(task => !state.blocks.some(block => block.taskId === task.id));
+	      if (missing.length) return notify("Add a time block for each of your three priorities.", true);
+	      if (conflicts().length) return notify("Resolve schedule overlaps before continuing.", true);
+	      state.step = 6;
+	    }
+	    save();
+	    render();
+	    window.scrollTo({ top: 0, behavior: "smooth" });
+	  }
+
+	  function goBack() {
+	    if (state.step > 1 && state.step < 7) state.step--;
+	    save();
+	    render();
+	    window.scrollTo({ top: 0, behavior: "smooth" });
+	  }
+
+	  document.addEventListener("submit", event => {
+	    const form = event.target;
+	    if (form.id === "add-task-form" || form.id === "quick-task-form") {
+	      event.preventDefault();
+	      const data = new FormData(form);
+	      if (createTask(String(data.get("title") || ""), String(data.get("dueDate") || ""))) {
+	        render();
+	        document.querySelector(form.id === "add-task-form" ? "#task-title" : "#quick-task")?.focus();
+	      }
+	    } else if (form.id === "add-block-form") {
+	      event.preventDefault();
+	      createBlock(form);
+	    } else if (form.id === "email-form") {
+	      event.preventDefault();
+	      const email = String(new FormData(form).get("email") || "").trim();
+	      const feedback = document.querySelector("#email-feedback");
+	      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+	        feedback.textContent = "Enter a valid email address.";
+	        feedback.className = "small notice error";
+	      } else {
+	        feedback.textContent = "Your email looks valid, but no subscription was made. Connect a mailing-list service to enable reminders.";
+	        feedback.className = "small notice";
+	      }
+	    }
+	  });
+
+	  document.addEventListener("change", event => {
+	    const el = event.target;
+	    const action = el.dataset.action;
+	    if (!action) return;
+	    const id = el.dataset.id;
+	    if (action === "toggle-complete") setStatus(id, el.checked ? "completed" : "todo");
+	    if (action === "move-task") setStatus(id, el.value);
+	    if (action === "priority-toggle") togglePriority(id, el.checked);
+	    if (action === "reschedule-date") {
+	      const task = taskById(id);
+	      if (task) { task.dueDate = el.value; save(); notify("Due date updated."); }
+	    }
+	    if (action === "setting") {
+	      state.settings[el.dataset.key] = el.value;
+	      save();
+	    }
+	    if (action === "block-time") {
+	      const block = state.blocks.find(item => item.id === id);
+	      if (block && Number.isFinite(minutes(el.value))) {
+	        block.startTime = el.value;
+	        save();
+	        render();
+	      }
+	    }
+	    if (action === "block-duration") {
+	      const block = state.blocks.find(item => item.id === id);
+	      if (block && DURATIONS.includes(Number(el.value))) {
+	        block.duration = Number(el.value);
+	        save();
+	        render();
+	      }
+	    }
+	    if (action === "review-check") {
+	      state.reviewed = el.checked;
+	      save();
+	      render();
+	    }
+	  });
+
+	  document.addEventListener("click", event => {
+	    const button = event.target.closest("[data-action]");
+	    if (!button) return;
+	    const action = button.dataset.action;
+	    const id = button.dataset.id;
+	    if (action === "home") { event.preventDefault(); state.step = 1; save(); render(); }
+	    else if (action === "start") { state.step = 2; save(); render(); }
+	    else if (action === "back") goBack();
+	    else if (action === "continue") goNext();
+	    else if (action === "edit-task") editTask(id);
+	    else if (action === "delete-task") deleteTask(id);
+	    else if (action === "complete-task") setStatus(id, "completed");
+	    else if (action === "priority-up") movePriority(Number(button.dataset.index), -1);
+	    else if (action === "priority-down") movePriority(Number(button.dataset.index), 1);
+	    else if (action === "delete-block") {
+	      state.blocks = state.blocks.filter(block => block.id !== id);
+	      save(); render();
+	    } else if (action === "add-break") addBreak();
+	    else if (action === "confirm-plan") confirmPlan();
+	    else if (action === "download") downloadPlan();
+	    else if (action === "print") window.print();
+	    else if (action === "new-reset") {
+	      state.step = 2;
+	      state.priorities = [];
+	      state.blocks = [];
+	      state.confirmed = false;
+	      state.reviewed = false;
+	      save(); render();
+	    } else if (action === "clear-data") {
+	      if (confirm("Clear all saved tasks, plans, and settings from this browser?")) {
+	        localStorage.removeItem(STORAGE_KEY);
+	        state = defaultState();
+	        render();
+	        notify("Saved data cleared.");
+	      }
+	    }
+	  });
+
+	  render();
+	})();
+</script>
 </body>
 </html>
